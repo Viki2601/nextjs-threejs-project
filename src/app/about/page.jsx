@@ -1,7 +1,7 @@
 "use client";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Sphere, Torus, Box, Stars } from "@react-three/drei";
-import * as THREE from "three";
+// import { Canvas, useFrame } from "@react-three/fiber";
+// import { Sphere, Torus, Box, Stars } from "@react-three/drei";
+// import * as THREE from "three";
 import { useRef } from "react";
 import Founder from "@/app/assets/landing/GMSFounder.png";
 import Image from "next/image";
@@ -103,35 +103,35 @@ function FloatingElements() {
     );
 }
 
-export function ThreeBackground() {
-    return (
-        <Canvas
-            style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                zIndex: -1,
-                width: "100vw",
-                height: "100vh",
-            }}
-            camera={{ position: [0, 0, 10], fov: 50 }}
-        >
-            <ambientLight intensity={0.3} />
-            <pointLight position={[10, 10, 10]} intensity={1} />
-            <directionalLight position={[0, 5, 5]} intensity={0.5} />
+// export function ThreeBackground() {
+//     return (
+//         <Canvas
+//             style={{
+//                 position: "fixed",
+//                 top: 0,
+//                 left: 0,
+//                 zIndex: -1,
+//                 width: "100vw",
+//                 height: "100vh",
+//             }}
+//             camera={{ position: [0, 0, 10], fov: 50 }}
+//         >
+//             <ambientLight intensity={0.3} />
+//             <pointLight position={[10, 10, 10]} intensity={1} />
+//             <directionalLight position={[0, 5, 5]} intensity={0.5} />
 
-            <Stars radius={100} depth={50} count={5000} factor={4} fade speed={0.5} />
-            {/* <FloatingElements /> */}
-        </Canvas>
-    );
-}
+//             <Stars radius={100} depth={50} count={5000} factor={4} fade speed={0.5} />
+//             {/* <FloatingElements /> */}
+//         </Canvas>
+//     );
+// }
 
 // Main Page Component
 export default function AboutPage() {
     return (
         <div className="relative min-h-screen overflow-hidden">
             {/* 3D Background */}
-            <ThreeBackground />
+            {/* <ThreeBackground /> */}
 
             {/* Main Content */}
             <motion.div
