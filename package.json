@@ -9,14 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ant-design/icons": "^6.0.0",
     "@fontsource/dm-sans": "^5.2.5",
     "@fontsource/lora": "^5.2.5",
     "@fontsource/space-grotesk": "^5.2.6",
     "@fontsource/urbanist": "^5.2.5",
-    "@react-three/drei": "^10.0.5",
-    "@react-three/fiber": "^9.1.0",
-    "antd": "^5.24.5",
     "framer-motion": "^12.6.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.483.0",
@@ -29,8 +25,7 @@
     "react-quill": "^2.0.0",
     "react-slick": "^0.30.3",
     "recharts": "^2.15.1",
-    "slick-carousel": "^1.8.1",
-    "three": "^0.174.0"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
