@@ -60,7 +60,7 @@ export default function Footer() {
                 exit={{ y: 100, opacity: 0 }}
                 transition={{ duration: 0.9, delay: 0.2, type: "spring", stiffness: 220, damping: 35 }}
                 viewport={{ once: false, amount: 0.3 }} // Adjust visibility trigger
-                className="text-[55px] md:text-8xl lg:text-[180px] text-center tracking-wide font-extrabold py-10 md:py-24 overflow-visible"
+                className="text-[60px] md:text-8xl lg:text-[140px] tracking-wider font-extrabold py-10 md:py-24 overflow-visible"
             >
                 MAI Corporation
             </motion.h1>
