@@ -31,14 +31,15 @@ body {
 }
 
 .font-space-grotesk {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif, Arial, Helvetica;
 }
 .font-urbanist {
-  font-family: 'Urbanist', sans-serif;
+  font-family: 'Urbanist', sans-serif, Arial, Helvetica;
 }
 .font-lora {
-  font-family: 'Lora', serif;
+  font-family: 'Lora', serif, Georgia, Times, 'Times New Roman';
 }
 .font-dm-sans {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'DM Sans', sans-serif, Arial, Helvetica;
 }
+
