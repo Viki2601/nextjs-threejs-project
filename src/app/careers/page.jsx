@@ -24,14 +24,14 @@ export default function CareerPage() {
             {/* Job Categories */}
             <div className='flex flex-wrap justify-center gap-3 m-6 font-urbanist'>
                 {categories.map((category, index) => (
-                    <motion.button key={index} className='px-4 py-2 text-sm font-medium border rounded-full bg-white' initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 100, y: 0 }} transition={{ duration: 0.6, delay: index * 0.1 }} whileHover={{ scale: 1.1 }}>
+                    <motion.button key={index} className='px-4 py-2 text-sm font-medium border rounded-full bg-white z-10' initial={{ opacity: 0, y: 100 }} whileInView={{ opacity: 100, y: 0 }} transition={{ duration: 0.6, delay: index * 0.1 }} whileHover={{ scale: 1.1 }}>
                         {category}
                     </motion.button>
                 ))}
             </div>
 
             {/* Job Listings */}
-            <div className='w-full max-w-4xl mt-10 space-y-6 font-urbanist'>
+            <div className='w-full max-w-4xl mt-10 space-y-6 font-urbanist z-20'>
                 {jobs.map((job, index) => (
                     <motion.div key={index} className='flex md:flex-row flex-col space-y-5 md:space-y-0 md:items-center md:justify-between p-6 bg-white rounded-lg shadow-md overflow-hidden' initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 0.6, delay: index * 0.4 }} whileHover={{ scale: 1.02 }}>
                         <div>

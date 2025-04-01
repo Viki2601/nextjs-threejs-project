@@ -387,7 +387,7 @@ export default function Page() {
   ];
 
   return (
-    <section className="py-20 px-4 bg-white font-urbanist relative">
+    <section className="py-20 px-4 font-urbanist relative">
       {/* Popup Overlay */}
       {isPopupOpen && (
         <motion.div
@@ -428,7 +428,7 @@ export default function Page() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Join the Regional team <span className="text-[#003F6B]">powering the business</span> of all your Home Needs
+            Join the Regional team <span className="text-gray-400">powering the business</span> of all your Home Needs
           </h1>
         </motion.div>
 
