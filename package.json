@@ -13,6 +13,7 @@
     "@fontsource/lora": "^5.2.5",
     "@fontsource/space-grotesk": "^5.2.6",
     "@fontsource/urbanist": "^5.2.5",
+    "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^12.6.0",
     "lucide-react": "^0.483.0",
     "next": "15.2.3",
