@@ -95,13 +95,31 @@ export default function Page() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit logic here
-    console.log(formData);
-    // Then close popup
-    closePopup();
+
+    try {
+      const response = await fetch('http://localhost:5000/api/jobs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Job posted:', data);
+        closePopup();
+      } else {
+        console.error('Failed to post job');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert(`Error: ${error.message}`);
+    }
   };
+
 
   const handleCardClick = (step) => {
     setSelectedStep(step);

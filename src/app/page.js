@@ -4,6 +4,8 @@ import DetailedView from "./components/detailedView";
 import SAB from "./components/sab";
 import Testimonials from "./components/testimonials";
 import Cursor from "./cursor/page";
+import StackedCards from "./components/stackCards.jsx";
+import Services from "./components/slideOpener";
 
 export default function Home() {
   return (
@@ -23,6 +25,12 @@ export default function Home() {
       </section>
       <section className="w-full flex justify-center items-center min-h-screen ">
         <Testimonials />
+      </section>
+      <section className="w-full flex justify-center items-center min-h-screen ">
+        <StackedCards />
+      </section>
+      <section className="w-full flex justify-center items-center min-h-screen ">
+        <Services />
       </section>
     </main>
   );
