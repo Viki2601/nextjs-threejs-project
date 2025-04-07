@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FiRefreshCw, FiPlus, FiClipboard, FiX } from "react-icons/fi";
+import { toast } from 'react-toastify';
 import { useEffect, useState } from "react";
 import {
   BarChart,
@@ -17,10 +18,16 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts';
+import { Form, Input, Button, Select, DatePicker, Radio, Modal } from 'antd';
+const { TextArea } = Input;
+const { Option } = Select;
 
 export default function Page() {
   const [selectedStep, setSelectedStep] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+
   // Sample real-time data for charts
   const [applicationData, setApplicationData] = useState([
     { name: 'Jan', applications: 120 },
@@ -48,7 +55,6 @@ export default function Page() {
   ]);
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
-
 
   // Simulate real-time data updates
   useEffect(() => {
@@ -78,48 +84,36 @@ export default function Page() {
     return () => clearInterval(interval);
   }, []);
 
-
-  const [formData, setFormData] = useState({
-    jobTitle: '',
-    department: '',
-    jobDescription: '',
-    qualifications: '',
-    minSalary: '',
-    maxSalary: '',
-    jobType: '',
-    deadline: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async (values) => {
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:5000/api/jobs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...values
+        })
       });
 
       if (response.ok) {
         const data = await response.json();
+        toast.success('🎉 Job posted successfully!');
         console.log('Job posted:', data);
+        form.resetFields();
         closePopup();
       } else {
         console.error('Failed to post job');
+        toast.error('❌ Failed to post job!');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert(`Error: ${error.message}`);
+      toast.error(`⚠️ Error: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
   };
-
 
   const handleCardClick = (step) => {
     setSelectedStep(step);
@@ -132,7 +126,6 @@ export default function Page() {
   };
 
   const processSteps = [
-
     // Adding New Postings
     {
       icon: <FiPlus className="text-2xl" />,
@@ -141,154 +134,104 @@ export default function Page() {
       popupContent: (
         <div className="space-y-6">
           <h3 className="text-2xl font-bold text-gray-800">Create New Job Posting</h3>
-
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <Form
+            form={form}
+            layout="vertical"
+            onFinish={handleSubmit}
+            initialValues={{
+              jobType: 'full-time'
+            }}
+          >
             {/* Job Title */}
-            <div>
-              <label htmlFor="jobTitle" className="block text-sm font-medium text-gray-700 mb-1">
-                Job Title *
-              </label>
-              <input
-                type="text"
-                id="jobTitle"
-                name="jobTitle"
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="e.g., Senior Frontend Developer"
-              />
-            </div>
+            <Form.Item
+              name="jobTitle"
+              label="Job Title"
+              rules={[{ required: true, message: 'Please input the job title!' }]}
+            >
+              <Input placeholder="e.g., Senior Frontend Developer" />
+            </Form.Item>
 
             {/* Department */}
-            <div>
-              <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-1">
-                Department *
-              </label>
-              <select
-                id="department"
-                name="department"
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              >
-                <option value="">Select Department</option>
-                <option value="engineering">Engineering</option>
-                <option value="marketing">Marketing</option>
-                <option value="hr">Human Resources</option>
-                <option value="finance">Finance</option>
-                <option value="operations">Operations</option>
-              </select>
-            </div>
+            <Form.Item
+              name="department"
+              label="Department"
+              rules={[{ required: true, message: 'Please select a department!' }]}
+            >
+              <Select placeholder="Select Department">
+                <Option value="engineering">Engineering</Option>
+                <Option value="marketing">Marketing</Option>
+                <Option value="hr">Human Resources</Option>
+                <Option value="finance">Finance</Option>
+                <Option value="operations">Operations</Option>
+              </Select>
+            </Form.Item>
 
             {/* Job Description */}
-            <div>
-              <label htmlFor="jobDescription" className="block text-sm font-medium text-gray-700 mb-1">
-                Job Description *
-              </label>
-              <textarea
-                id="jobDescription"
-                name="jobDescription"
+            <Form.Item
+              name="jobDescription"
+              label="Job Description"
+              rules={[{ required: true, message: 'Please input the job description!' }]}
+            >
+              <TextArea
                 rows={5}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Describe the role, responsibilities, and day-to-day activities..."
               />
-            </div>
+            </Form.Item>
 
             {/* Qualifications */}
-            <div>
-              <label htmlFor="qualifications" className="block text-sm font-medium text-gray-700 mb-1">
-                Required Qualifications *
-              </label>
-              <textarea
-                id="qualifications"
-                name="qualifications"
+            <Form.Item
+              name="qualifications"
+              label="Required Qualifications"
+              rules={[{ required: true, message: 'Please input the required qualifications!' }]}
+            >
+              <TextArea
                 rows={3}
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="List required skills, education, and experience..."
               />
-            </div>
-
-            {/* Salary Range */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label htmlFor="minSalary" className="block text-sm font-medium text-gray-700 mb-1">
-                  Minimum Salary ($)
-                </label>
-                <input
-                  type="number"
-                  id="minSalary"
-                  name="minSalary"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="e.g., 60000"
-                />
-              </div>
-              <div>
-                <label htmlFor="maxSalary" className="block text-sm font-medium text-gray-700 mb-1">
-                  Maximum Salary ($)
-                </label>
-                <input
-                  type="number"
-                  id="maxSalary"
-                  name="maxSalary"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="e.g., 90000"
-                />
-              </div>
-            </div>
+            </Form.Item>
 
             {/* Job Type */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Job Type *</label>
-              <div className="flex flex-wrap gap-4">
-                {['Full-time', 'Part-time', 'Contract', 'Internship', 'Remote'].map((type) => (
-                  <div key={type} className="flex items-center">
-                    <input
-                      type="radio"
-                      id={type}
-                      name="jobType"
-                      value={type.toLowerCase()}
-                      required
-                      className="h-4 w-4 text-[#003F6B] focus:ring-[#003F6B]"
-                    />
-                    <label htmlFor={type} className="ml-2 text-sm text-gray-700">
-                      {type}
-                    </label>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <Form.Item
+              name="jobType"
+              label="Job Type"
+              rules={[{ required: true, message: 'Please select job type!' }]}
+            >
+              <Radio.Group>
+                <Radio value="full-time">Full-time</Radio>
+                <Radio value="part-time">Part-time</Radio>
+                <Radio value="contract">Contract</Radio>
+                <Radio value="internship">Internship</Radio>
+                <Radio value="remote">Remote</Radio>
+              </Radio.Group>
+            </Form.Item>
 
             {/* Application Deadline */}
-            <div>
-              <label htmlFor="deadline" className="block text-sm font-medium text-gray-700 mb-1">
-                Application Deadline *
-              </label>
-              <input
-                type="date"
-                id="deadline"
-                name="deadline"
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
+            <Form.Item
+              name="deadline"
+              label="Application Deadline"
+              rules={[{ required: true, message: 'Please select deadline!' }]}
+            >
+              <DatePicker style={{ width: '100%' }} />
+            </Form.Item>
 
             {/* Form Actions */}
-            <div className="flex justify-end space-x-4 pt-4">
-              <button
-                type="button"
+            <Form.Item className="flex justify-end space-x-4 pt-4">
+              <Button
                 onClick={closePopup}
-                className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition"
+                className="mr-4"
               >
                 Cancel
-              </button>
-              <button
-                type="submit"
-                className="px-6 py-2 bg-[#003F6B] text-white rounded-lg hover:bg-gray-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              </Button>
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={loading}
+                className="bg-[#003F6B] hover:bg-[#002b4d]"
               >
                 Post Job
-              </button>
-            </div>
-          </form>
+              </Button>
+            </Form.Item>
+          </Form>
         </div>
       )
     },
@@ -406,35 +349,23 @@ export default function Page() {
 
   return (
     <section className="py-20 px-4 font-urbanist relative">
-      {/* Popup Overlay */}
-      {isPopupOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4"
-          onClick={closePopup}
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-xl shadow-2xl max-w-6xl w-full p-8 relative h-full overflow-y-auto"
-          >
-            <button
-              onClick={closePopup}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-            >
-              <FiX className="text-2xl" />
-            </button>
-            <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-[#003F6B] mb-6">
-              {selectedStep?.icon}
-            </div>
-            <div className="prose">
-              {selectedStep?.popupContent}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+      {/* Popup Modal */}
+      <Modal
+        title={selectedStep?.title}
+        open={isPopupOpen}
+        onCancel={closePopup}
+        footer={null}
+        width={1000}
+        centered
+        className="rounded-xl"
+      >
+        <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center text-[#003F6B] mb-6">
+          {selectedStep?.icon}
+        </div>
+        <div className="prose">
+          {selectedStep?.popupContent}
+        </div>
+      </Modal>
 
       <div className="max-w-6xl mx-auto">
         {/* Header */}

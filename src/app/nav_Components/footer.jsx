@@ -56,11 +56,11 @@ export default function Footer() {
             {/* H1 Text with Smooth In-View Animation */}
             <motion.h1
                 initial={{ y: 100, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
+                whileInView={{ y: 30, opacity: 1 }}
                 exit={{ y: 100, opacity: 0 }}
                 transition={{ duration: 0.9, delay: 0.2, type: "spring", stiffness: 220, damping: 35 }}
                 viewport={{ once: false, amount: 0.3 }} // Adjust visibility trigger
-                className="text-[62px] md:text-8xl lg:text-[150px] text-center tracking-wider font-extrabold py-10 md:py-24 overflow-visible"
+                className="text-[62px] md:text-8xl lg:text-[180px] text-center tracking-wider font-extrabold overflow-visible"
             >
                 MAI Corporation
             </motion.h1>

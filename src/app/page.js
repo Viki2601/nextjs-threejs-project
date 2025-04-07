@@ -6,6 +6,9 @@ import Testimonials from "./components/testimonials";
 import Cursor from "./cursor/page";
 import StackedCards from "./components/stackCards.jsx";
 import Services from "./components/slideOpener";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Home() {
   return (
@@ -32,6 +35,7 @@ export default function Home() {
       <section className="w-full flex justify-center items-center min-h-screen ">
         <Services />
       </section>
+      <ToastContainer position="top-right" autoClose={3000} />
     </main>
   );
 }
