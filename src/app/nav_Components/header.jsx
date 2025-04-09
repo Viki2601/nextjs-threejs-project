@@ -27,7 +27,7 @@ export default function Header() {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4 bg-transparent">
+        <div className="sticky top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-4 bg-transparent">
             {/* Logo */}
             <button onClick={() => router.push("/")} className="focus:outline-none cursor-pointer"> {/* ✅ Use button for navigation */}
                 <Image src={MAI} alt="MAI" height={1000} width={1000} className="w-24" />

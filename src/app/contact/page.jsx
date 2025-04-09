@@ -31,7 +31,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen font-urbanist">
       {/* Main Content */}
-      <div className="container mx-auto px-8 py-24 grid md:grid-cols-2 gap-12">
+      <div className="container mx-auto px-8 py-5 grid md:grid-cols-2 gap-12">
         {/* Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}

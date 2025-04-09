@@ -85,7 +85,7 @@ export default function Page() {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/api/jobs`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/jobs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -115,7 +115,7 @@ export default function Page() {
   // Fetching Jobs
   const fetchJobs = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/api`);
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api`);
       if (!response.ok) throw new Error("Failed to fetch jobs");
       const jobs = await response.json();
       console.log("Fetched jobs:", jobs);
@@ -140,7 +140,7 @@ export default function Page() {
     const updatedJobs = jobs.filter((job) => job._id !== id);
     setJobs(updatedJobs)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/api/delete/${id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/delete/${id}`, {
         method: 'DELETE',
       });
       if (!response.ok) throw new Error('Failed to delete');
@@ -156,7 +156,7 @@ export default function Page() {
 
   const handleUpdate = async (values) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/api/update/${editingJob._id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/update/${editingJob._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
