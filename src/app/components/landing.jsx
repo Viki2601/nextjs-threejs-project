@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Banner from "@/app/assets/landing/Banner.avif";
 
@@ -22,11 +22,33 @@ export default function ParallaxLanding() {
   const ref = useRef(null);
   const nextSectionRef = useRef(null);
 
-  // Mouse parallax
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const parallaxX = useTransform(mouseX, [0, window.innerWidth], [-20, 20]);
-  const parallaxY = useTransform(mouseY, [0, window.innerHeight], [-20, 20]);
+
+  // ⛑️ Safe default sizes before window loads
+  const [windowSize, setWindowSize] = useState({ width: 1, height: 1 });
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }
+  }, []);
+
+  const parallaxX = useTransform(mouseX, [0, windowSize.width], [-20, 20]);
+  const parallaxY = useTransform(mouseY, [0, windowSize.height], [-20, 20]);
 
   const handleMouseMove = (e) => {
     mouseX.set(e.clientX);
