@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Home() {
   return (
     <main>
-      <Cursor />
+      {/* <Cursor /> */}
       <section className="py-5 w-full flex justify-center items-center h-screen ">
         <Landing />
       </section>
@@ -29,9 +29,9 @@ export default function Home() {
       <section className="w-full flex justify-center items-center min-h-screen ">
         <SAB />
       </section>
-      <section className="w-full flex justify-center items-center min-h-screen ">
+      {/* <section className="w-full flex justify-center items-center min-h-screen ">
         <Testimonials />
-      </section>
+      </section> */}
       <section className="w-full flex justify-center items-center min-h-screen ">
         <Services />
       </section>
