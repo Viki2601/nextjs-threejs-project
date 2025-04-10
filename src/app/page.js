@@ -18,6 +18,9 @@ export default function Home() {
         <Landing />
       </section>
       <section className="w-full flex justify-center items-center min-h-screen ">
+        <StackedCards />
+      </section>
+      <section className="w-full flex justify-center items-center min-h-screen ">
         <About />
       </section>
       <section className="w-full flex justify-center items-center min-h-screen ">
@@ -28,9 +31,6 @@ export default function Home() {
       </section>
       <section className="w-full flex justify-center items-center min-h-screen ">
         <Testimonials />
-      </section>
-      <section className="w-full flex justify-center items-center min-h-screen ">
-        <StackedCards />
       </section>
       <section className="w-full flex justify-center items-center min-h-screen ">
         <Services />

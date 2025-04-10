@@ -119,15 +119,6 @@ const Services = () => {
                     )}
                 </div>
             </div>
-
-            <motion.button
-                className="fixed bottom-10 left-10 bg-black text-white flex items-center gap-2 px-6 py-3 rounded-full shadow-lg"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-            >
-                <span className="text-xl">☰</span> Menu
-            </motion.button>
         </section>
     );
 };
