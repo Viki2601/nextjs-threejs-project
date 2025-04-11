@@ -23,25 +23,25 @@ export default function About() {
             {data.map((item, index) => (
                 <div
                     key={index}
-                    className="min-h-screen grid grid-cols-1 md:grid-cols-2 gap-4 px-4 sm:px-10 py-10"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 sm:px-10 py-6"
                 >
                     {/* Sticky Content */}
-                    <div className="sticky top-24 h-fit self-start">
-                        <div className="bg-[#4FC3F7] text-white rounded-3xl p-8 sm:p-16 space-y-6 shadow-xl">
+                    <div className="sticky top-40 h-fit self-start">
+                        <div className="bg-[#4FC3F7] text-white/80 rounded-3xl p-6 sm:p-12 space-y-4 shadow-xl">
                             <div className="bg-white text-[#4FC3F7] w-fit px-4 py-2 rounded-full text-sm font-semibold tracking-wider">
                                 {item.name}
                             </div>
-                            <h1 className="text-4xl sm:text-5xl font-bold leading-tight">
+                            <h1 className="text-3xl sm:text-6xl font-bold leading-tight">
                                 {item.name}
                             </h1>
-                            <p className="text-lg sm:text-xl opacity-80">{item.desc}</p>
+                            <p className="text-base sm:text-lg opacity-80">{item.desc}</p>
                         </div>
                     </div>
 
                     {/* Right Image or Card */}
                     <motion.div
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0}}
+                        whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                         className="rounded-3xl overflow-hidden shadow-xl h-fit"
@@ -56,5 +56,6 @@ export default function About() {
                 </div>
             ))}
         </section>
+
     );
 }

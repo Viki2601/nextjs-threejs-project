@@ -1,69 +1,73 @@
 'use client';
-import { motion, useAnimation } from "framer-motion";
+
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import GMS from "@/app/assets/landing/GMS.jpg";
-import { useEffect } from "react";
-import { useInView } from "react-intersection-observer";
+import { useRef } from "react";
 
 export default function DetailedView() {
-    const MotionBox = ({ children, delay }) => {
-        const controls = useAnimation();
-        const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.2 });
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-        useEffect(() => {
-            if (inView) {
-                controls.start({ x: 0, opacity: 1 });
-            } else {
-                controls.start({ x: 100, opacity: 0 });
-            }
-        }, [inView, controls]);
+  const y1 = useTransform(scrollYProgress, [0, 0.33], ["0%", "-100%"]);
+  const y2 = useTransform(scrollYProgress, [0.33, 0.66], ["0%", "-100%"]);
 
-        return (
-            <motion.div
-                ref={ref}
-                initial={{ x: 100, opacity: 0 }}
-                animate={controls}
-                transition={{ duration: 1, delay, ease: "easeOut" }}
-                className="w-full bg-[#003F6B] p-5 m-10 text-white text-center h-fit space-y-4 rounded-xl shadow-xl"
-            >
-                {children}
-            </motion.div>
-        );
-    };
+  return (
+    <div ref={containerRef} className="relative w-full min-h-[300vh] font-urbanist">
+      {/* Section 1 */}
+      <div className="sticky top-0 h-screen w-full grid grid-cols-1 lg:grid-cols-2">
+        <motion.div 
+          style={{ y: y1 }}
+          className="h-full flex items-center justify-center p-6 sm:p-10 bg-white rounded-b-2xl"
+        >
+          <div className="w-full max-w-2xl bg-[#003F6B] p-6 sm:p-8 text-white text-center flex flex-col items-center justify-center h-[60vh] space-y-4 rounded-xl shadow-xl">
+            <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white/60 leading-tight">
+              "Making Simple Construction Projects"
+            </p>
+            <p className="text-xl sm:text-2xl font-bold">We Build Homes Everyday</p>
+            <p className="text-base sm:text-lg font-semibold">MAI Experts at your service!</p>
+          </div>
+        </motion.div>
 
-    return (
-        <section className="bg-white flex flex-col-reverse lg:flex-row w-full min-h-screen space-y-10 font-urbanist overflow-hidden">
-            <div className="lg:w-1/2 z-10">
-                <div className="w-full flex justify-start">
-                    <MotionBox delay={0.2}>
-                        <p className="text-2xl font-bold">“ Making Simple - Construction Projects ” We Build Homes Everyday</p>
-                        <p className="text-lg font-semibold">MAI Experts at your service!</p>
-                    </MotionBox>
-                </div>
+        <div className="h-full flex items-center justify-center p-6 sm:p-10 bg-[#003F6B] rounded-2xl">
+          <div className="w-full h-[60vh] sm:h-full relative rounded-xl overflow-hidden shadow-xl">
+            <Image
+              src={GMS}
+              alt="Construction"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </div>
 
-                <div className="w-full flex justify-start">
-                    <MotionBox delay={0.4}>
-                        <p className="text-2xl font-bold">Vision</p>
-                        <p className="text-lg font-semibold">Creating the easiest, most efficient & reliable technology to serve the Construction Industry.</p>
-                    </MotionBox>
-                </div>
+      {/* Section 2 */}
+      <div className="sticky top-0 h-screen w-full grid grid-cols-1 lg:grid-cols-2 mt-[100vh]">
+        <motion.div 
+          style={{ y: y2 }}
+          className="h-full flex items-center justify-center p-6 sm:p-10 bg-white/60 backdrop-blur-2xl rounded-2xl"
+        >
+          <div className="w-full max-w-2xl bg-[#003F6B] p-6 sm:p-8 text-white text-center flex flex-col items-center justify-center h-[50vh] space-y-4 rounded-xl shadow-xl">
+            <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white/60">Vision</p>
+            <p className="text-base sm:text-xl font-semibold">
+              Creating the easiest, most efficient & reliable technology to serve the Construction Industry.
+            </p>
+          </div>
+        </motion.div>
 
-                <div className="w-full flex justify-start">
-                    <MotionBox delay={0.6}>
-                        <p className="text-2xl font-bold">Mission</p>
-                        <p className="text-lg font-semibold">Growing together with Individual Traders & SMEs</p>
-                    </MotionBox>
-                </div>
-            </div>
-
-            <div className="relative bg-white lg:w-1/2 z-20">
-                <div className="space-y-5">
-                    <Image src={GMS} alt="GMS" width={1000} height={1000} />
-                    <h2 className="text-4xl font-bold px-10">Our Founder's</h2>
-                    <p className="px-10">GMS Kumar, the CEO of MAI embarked on his journey in the Construction industry at Work-Tops.com in the UK, where he put his 10+ years of experience in the Stone industry, and eight years in Recruitment and Education Consulting. He has set out to venture into the marketplace world with MAI (Myproject.ai), a platform catering to diverse construction needs for the people of the UK & Europe via .coms & mobile applications. His track record includes pioneering Microsoft Dynamic CRM in international student recruitment, implementing SAP at a prestigious Solicitor firm, launching a PHP-based Stone Industry marketplace and integrating cutting-edge Artificial Intelligence into Work-Tops.com.</p>
-                </div>
-                <div className="absolute top-0 -left-10 h-full w-10 bg-gradient-to-l from-white to-transparent"></div>
-            </div>
-        </section>
-    );
+        <div className="h-full flex items-center justify-center p-6 sm:p-10 bg-white/20 backdrop-blur-2xl rounded-2xl">
+          <div className="w-full max-w-2xl bg-[#003F6B] p-6 sm:p-8 text-white text-center flex flex-col items-center justify-center h-[70vh] space-y-4 rounded-xl shadow-xl">
+            <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white/60">Mission</p>
+            <p className="text-base sm:text-xl font-semibold">
+              Growing together with Individual Traders & SMEs through innovative construction solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

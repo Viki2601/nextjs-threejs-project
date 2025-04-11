@@ -25,7 +25,6 @@ export default function ParallaxLanding() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // ⛑️ Safe default sizes before window loads
   const [windowSize, setWindowSize] = useState({ width: 1, height: 1 });
 
   useEffect(() => {
