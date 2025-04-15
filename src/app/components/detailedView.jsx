@@ -1,73 +1,58 @@
 'use client';
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import GMS from "@/app/assets/landing/GMS.jpg";
-import { useRef } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function DetailedView() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+const faqs = [
+  {
+    question: "What services do you offer?",
+    answer:
+      "We offer end-to-end construction solutions from planning to execution with a focus on efficiency and innovation.",
+  },
+  {
+    question: "Do you provide custom project designs?",
+    answer:
+      "Yes, our design team collaborates with clients to deliver tailored solutions that fit specific needs and budgets.",
+  },
+  {
+    question: "How can I get a project estimate?",
+    answer:
+      "Simply contact us through our website or call our support. We’ll schedule a consultation to discuss your requirements.",
+  },
+];
 
-  const y1 = useTransform(scrollYProgress, [0, 0.33], ["0%", "-100%"]);
-  const y2 = useTransform(scrollYProgress, [0.33, 0.66], ["0%", "-100%"]);
+export default function FAQSection() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
+  };
 
   return (
-    <div ref={containerRef} className="relative w-full min-h-[300vh] font-urbanist">
-      {/* Section 1 */}
-      <div className="sticky top-0 h-screen w-full grid grid-cols-1 lg:grid-cols-2">
-        <motion.div 
-          style={{ y: y1 }}
-          className="h-full flex items-center justify-center p-6 sm:p-10 bg-white rounded-b-2xl"
-        >
-          <div className="w-full max-w-2xl bg-[#003F6B] p-6 sm:p-8 text-white text-center flex flex-col items-center justify-center h-[60vh] space-y-4 rounded-xl shadow-xl">
-            <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white/60 leading-tight">
-              "Making Simple Construction Projects"
-            </p>
-            <p className="text-xl sm:text-2xl font-bold">We Build Homes Everyday</p>
-            <p className="text-base sm:text-lg font-semibold">MAI Experts at your service!</p>
+    <section className="text-white w-full px-6 py-20 font-urbanist">
+      <div className="mx-auto space-y-10">
+        {faqs.map((faq, idx) => (
+          <div key={idx} className={`transition-all duration-300 rounded-xl overflow-hidden ${ activeIndex === idx ? "bg-white text-black" : "" }`}>
+            <button onClick={() => toggleFAQ(idx)} className="w-full text-left px-6 py-5 flex justify-between items-center font-semibold text-4xl">
+              {faq.question}
+            </button>
+            <AnimatePresence initial={false}>
+              {activeIndex === idx && (
+                <motion.div
+                  key="content"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="px-6 pb-6 text-base"
+                >
+                  {faq.answer}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-        </motion.div>
-
-        <div className="h-full flex items-center justify-center p-6 sm:p-10 bg-[#003F6B] rounded-2xl">
-          <div className="w-full h-[60vh] sm:h-full relative rounded-xl overflow-hidden shadow-xl">
-            <Image
-              src={GMS}
-              alt="Construction"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
+        ))}
       </div>
-
-      {/* Section 2 */}
-      <div className="sticky top-0 h-screen w-full grid grid-cols-1 lg:grid-cols-2 mt-[100vh]">
-        <motion.div 
-          style={{ y: y2 }}
-          className="h-full flex items-center justify-center p-6 sm:p-10 bg-white/60 backdrop-blur-2xl rounded-2xl"
-        >
-          <div className="w-full max-w-2xl bg-[#003F6B] p-6 sm:p-8 text-white text-center flex flex-col items-center justify-center h-[50vh] space-y-4 rounded-xl shadow-xl">
-            <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white/60">Vision</p>
-            <p className="text-base sm:text-xl font-semibold">
-              Creating the easiest, most efficient & reliable technology to serve the Construction Industry.
-            </p>
-          </div>
-        </motion.div>
-
-        <div className="h-full flex items-center justify-center p-6 sm:p-10 bg-white/20 backdrop-blur-2xl rounded-2xl">
-          <div className="w-full max-w-2xl bg-[#003F6B] p-6 sm:p-8 text-white text-center flex flex-col items-center justify-center h-[70vh] space-y-4 rounded-xl shadow-xl">
-            <p className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white/60">Mission</p>
-            <p className="text-base sm:text-xl font-semibold">
-              Growing together with Individual Traders & SMEs through innovative construction solutions.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
   );
 }
