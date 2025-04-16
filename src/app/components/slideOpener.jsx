@@ -1,7 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useState } from 'react';
+import Worktops from "@/app/assets/landing/Worktops.png";
+import Myproject from "@/app/assets/landing/Myproject.png";
+
 
 const Services = () => {
     const [activeTab, setActiveTab] = useState('strategy');
@@ -20,39 +24,39 @@ const Services = () => {
 
                 <div className="grid md:grid-cols-3 gap-8 mb-16">
                     <motion.button
-                        className={`text-left pb-4 ${activeTab === 'strategy' ? 'border-b-4 border-black' : 'opacity-50'}`}
-                        onClick={() => setActiveTab('strategy')}
+                        className={`text-left pb-4 ${activeTab === 'worktops' ? 'border-b-4 border-black' : 'opacity-50'}`}
+                        onClick={() => setActiveTab('worktops')}
                         whileHover={{ opacity: 1 }}
                         initial={{ opacity: 0.5 }}
-                        animate={{ opacity: activeTab === 'strategy' ? 1 : 0.5 }}
+                        animate={{ opacity: activeTab === 'worktops' ? 1 : 0.5 }}
                     >
-                        <h2 className="text-3xl font-bold mb-4">Strategy</h2>
+                        <h2 className="text-3xl font-bold mb-4">Work-Tops.com</h2>
                     </motion.button>
 
                     <motion.button
-                        className={`text-left pb-4 ${activeTab === 'creative' ? 'border-b-4 border-black' : 'opacity-50'}`}
-                        onClick={() => setActiveTab('creative')}
+                        className={`text-left pb-4 ${activeTab === 'myproject' ? 'border-b-4 border-black' : 'opacity-50'}`}
+                        onClick={() => setActiveTab('myproject')}
                         whileHover={{ opacity: 1 }}
                         initial={{ opacity: 0.5 }}
-                        animate={{ opacity: activeTab === 'creative' ? 1 : 0.5 }}
+                        animate={{ opacity: activeTab === 'myproject' ? 1 : 0.5 }}
                     >
-                        <h2 className="text-3xl font-bold mb-4">Creative</h2>
+                        <h2 className="text-3xl font-bold mb-4">Myproject.ai</h2>
                     </motion.button>
 
                     <motion.button
-                        className={`text-left pb-4 ${activeTab === 'technology' ? 'border-b-4 border-black' : 'opacity-50'}`}
-                        onClick={() => setActiveTab('technology')}
+                        className={`text-left pb-4 ${activeTab === 'dc' ? 'border-b-4 border-black' : 'opacity-50'}`}
+                        onClick={() => setActiveTab('dc')}
                         whileHover={{ opacity: 1 }}
                         initial={{ opacity: 0.5 }}
-                        animate={{ opacity: activeTab === 'technology' ? 1 : 0.5 }}
+                        animate={{ opacity: activeTab === 'dc' ? 1 : 0.5 }}
                     >
-                        <h2 className="text-3xl font-bold mb-4">Technology</h2>
+                        <h2 className="text-3xl font-bold mb-4">Dragon Customer</h2>
                     </motion.button>
                 </div>
 
                 <div className="relative min-h-[400px]">
                     {/* Strategy Content */}
-                    {activeTab === 'strategy' && (
+                    {activeTab === 'worktops' && (
                         <motion.div
                             className="grid md:grid-cols-2 gap-12"
                             initial={{ opacity: 0, x: -20 }}
@@ -66,20 +70,19 @@ const Services = () => {
                                 </p>
                             </div>
                             <div className="flex items-center justify-center">
-                                <motion.div
-                                    className="bg-black text-white p-8 rounded-lg w-full max-w-md"
-                                    initial={{ scale: 0.9 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ duration: 0.5, delay: 0.2 }}
-                                >
-                                    <h3 className="text-2xl font-bold mb-4">Black Earth</h3>
-                                </motion.div>
+                                <Image
+                                    src={Worktops}
+                                    alt="Worktops"
+                                    width={500}
+                                    height={400}
+                                    className="rounded-xl border object-cover"
+                                />
                             </div>
                         </motion.div>
                     )}
 
                     {/* Creative Content */}
-                    {activeTab === 'creative' && (
+                    {activeTab === 'myproject' && (
                         <motion.div
                             className="grid md:grid-cols-2 gap-12"
                             initial={{ opacity: 0, x: -20 }}
@@ -106,7 +109,7 @@ const Services = () => {
                     )}
 
                     {/* Technology Content */}
-                    {activeTab === 'technology' && (
+                    {activeTab === 'dc' && (
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}

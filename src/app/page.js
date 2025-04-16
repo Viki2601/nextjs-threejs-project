@@ -27,14 +27,14 @@ export default function Home() {
         <DetailedView />
       </section>
       <section className="w-full flex justify-center items-center min-h-screen ">
+        <Services />
+      </section>
+      <section className="w-full flex justify-center items-center min-h-screen ">
         <SAB />
       </section>
       {/* <section className="w-full flex justify-center items-center min-h-screen ">
         <Testimonials />
       </section> */}
-      <section className="w-full flex justify-center items-center min-h-screen ">
-        <Services />
-      </section>
       <ToastContainer position="top-right" autoClose={3000} />
     </main>
   );
