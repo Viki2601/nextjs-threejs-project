@@ -9,9 +9,8 @@ import { useRouter } from "next/navigation";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
-    const router = useRouter(); // ✅ Correct way to use useRouter()
+    const router = useRouter();
 
-    // Animation Variants
     const menuVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { duration: 0.5 } },
@@ -47,7 +46,7 @@ export default function Header() {
                     variants={menuVariants}
                     className="w-full fixed inset-0 bg-black/90 flex flex-col items-center justify-center space-y-8"
                 >
-                    {["Home", "About", "Careers", "CSR", "Contact"].map((item, index) => (
+                    {["Home", "About", "Careers", "CSR","Testimonials", "Contact"].map((item, index) => (
                         <motion.div
                             key={item}
                             custom={index}

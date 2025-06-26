@@ -13,6 +13,8 @@
     "@fontsource/lora": "^5.2.5",
     "@fontsource/space-grotesk": "^5.2.6",
     "@fontsource/urbanist": "^5.2.5",
+    "@react-three/drei": "^10.3.0",
+    "@react-three/fiber": "^9.1.2",
     "@tiptap/extension-image": "^2.11.7",
     "@tiptap/pm": "^2.11.7",
     "@tiptap/react": "^2.11.7",
@@ -21,6 +23,7 @@
     "antd": "^5.24.6",
     "axios": "^1.8.4",
     "framer-motion": "^12.6.0",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.483.0",
     "next": "15.2.3",
     "react": "^18.2.0",
@@ -31,7 +34,8 @@
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
     "recharts": "^2.15.1",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "three": "^0.177.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
