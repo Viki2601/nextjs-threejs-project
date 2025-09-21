@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import Header from "./nav_Components/header";
-import Footer from "./nav_Components/footer";
+import Header from "../common/Navigation/header";
+import Footer from "../common/Navigation/footer";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 

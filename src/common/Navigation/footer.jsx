@@ -59,7 +59,7 @@ export default function Footer() {
                 whileInView={{ y: 30, opacity: 1 }}
                 exit={{ y: 100, opacity: 0 }}
                 transition={{ duration: 0.9, delay: 0.2, type: "spring", stiffness: 220, damping: 35 }}
-                viewport={{ once: false, amount: 0.3 }} // Adjust visibility trigger
+                viewport={{ once: false, amount: 0.3 }}
                 className="text-[62px] md:text-8xl lg:text-[180px] text-center tracking-wider font-extrabold overflow-visible"
             >
                 MAI Corporation

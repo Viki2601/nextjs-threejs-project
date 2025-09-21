@@ -39,28 +39,10 @@ export default function Header() {
 
             {/* Fullscreen Overlay */}
             {isOpen && (
-                <motion.div
-                    initial="hidden"
-                    animate="visible"
-                    exit="hidden"
-                    variants={menuVariants}
-                    className="w-full fixed inset-0 bg-black/90 flex flex-col items-center justify-center space-y-8"
-                >
-                    {["Home", "About", "Careers", "CSR","Testimonials", "Contact"].map((item, index) => (
-                        <motion.div
-                            key={item}
-                            custom={index}
-                            initial="hidden"
-                            animate="visible"
-                            variants={linkVariants}
-                            className="relative w-full text-center"
-                        >
-                            <Link
-                                href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                                className="text-white w-full font-urbanist text-4xl font-semibold tracking-widest uppercase 
-                transition-all duration-500 relative group hover:text-gray-300 hover:border-t-2 hover:border-b-2"
-                                onClick={() => setIsOpen(false)}
-                            >
+                <motion.div initial="hidden" animate="visible" exit="hidden" variants={menuVariants} className="w-full fixed inset-0 bg-black/90 flex flex-col items-center justify-center space-y-8">
+                    {["Home", "About", "Careers", "CSR", "Testimonials", "Contact"].map((item, index) => (
+                        <motion.div key={item} custom={index} initial="hidden" animate="visible" variants={linkVariants} className="relative w-full text-center">
+                            <Link href={item === "Home" ? "/" : `/${item.toLowerCase()}`} className="text-white w-full font-urbanist text-4xl font-semibold tracking-widest uppercase  transition-all duration-500 relative group hover:text-gray-300 hover:border-t-2 hover:border-b-2" onClick={() => setIsOpen(false)} >
                                 {item}
                             </Link>
                         </motion.div>

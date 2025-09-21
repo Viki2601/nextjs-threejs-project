@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600&display=swap');
+@import url("https://db.onlinewebfonts.com/c/73c00071d90ecfb78bf0ccdeda529307?family=Nico+Moji");
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
 @import "tailwindcss";
-
-
 
 :root {
   --background: #003F6B;
@@ -33,13 +33,23 @@ body {
 .font-space-grotesk {
   font-family: 'Space Grotesk', sans-serif, Arial, Helvetica;
 }
+
 .font-urbanist {
   font-family: 'Urbanist', Helvetica;
 }
+
 .font-lora {
   font-family: 'Lora', serif, Georgia, Times, 'Times New Roman';
 }
+
 .font-dm-sans {
   font-family: 'DM Sans', sans-serif, Arial, Helvetica;
 }
 
+.font-nico-moji {
+  font-family: 'Nico Moji', sans-serif, Arial, Helvetica;
+}
+
+.font-rock-salt {
+  font-family: 'Rock Salt', cursive;
+}

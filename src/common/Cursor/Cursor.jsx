@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { motion } from "framer-motion";
 
@@ -15,7 +14,7 @@ function Cursor() {
         };
     }, []);
     return (
-        <motion.div className='w-[25px] h-[25px] bg-white mix-blend-difference rounded-full fixed z-[9999]' animate={{ x: position.x + 10, y: position.y + 10 }}></motion.div>
+        <motion.div className='w-[25px] h-[25px] bg-white mix-blend-difference rounded-full hidden lg:block fixed z-[9999]' animate={{ x: position.x + 10, y: position.y + 10 }}></motion.div>
     )
 }
 
