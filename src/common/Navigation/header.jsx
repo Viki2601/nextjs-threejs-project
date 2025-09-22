@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { RiCloseLine, RiMenu3Line } from "react-icons/ri";
 import MAI from "@/app/assets/landing/MAI.png";
 import { useRouter } from "next/navigation";
 
@@ -34,7 +34,7 @@ export default function Header() {
 
             {/* Menu Button */}
             <button onClick={() => setIsOpen(!isOpen)} className="text-white z-50">
-                {isOpen ? <X size={32} /> : <Menu size={32} />}
+                {isOpen ? <RiCloseLine size={32} /> : <RiMenu3Line size={32} />}
             </button>
 
             {/* Fullscreen Overlay */}

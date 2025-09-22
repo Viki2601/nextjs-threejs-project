@@ -8,7 +8,7 @@ export default function About() {
     const sectionRef = useRef(null);
 
     return (
-        <section ref={sectionRef} className="w-full bg-[#f8f9fa] font-urbanist">
+        <section ref={sectionRef} className="w-full bg-[#F8F9FA] font-urbanist">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 sm:px-10 py-6">
                 {/* Sticky Content */}
                 <div className="sticky top-40 h-fit self-start">

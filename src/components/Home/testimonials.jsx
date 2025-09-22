@@ -1,36 +1,9 @@
 'use client';
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
 import TestimonialBG from "@/app/assets/landing/unsplash.jpg";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+import AutoCarousel from "@/common/Animation/AutoCarousel";
 
 export default function Testimonials() {
-    const bgRef = useRef(null);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            if (bgRef.current) {
-                const scrollY = window.scrollY;
-                const scale = 1 + scrollY * 0.0005; // Adjust for zoom effect
-                bgRef.current.style.transform = `scale(${scale})`;
-            }
-        };
-
-        let animationFrame;
-        const onScroll = () => {
-            if (animationFrame) cancelAnimationFrame(animationFrame);
-            animationFrame = requestAnimationFrame(handleScroll);
-        };
-
-        window.addEventListener("scroll", onScroll);
-        return () => {
-            window.removeEventListener("scroll", onScroll);
-            if (animationFrame) cancelAnimationFrame(animationFrame);
-        };
-    }, []);
-
     const data = [
         { name: "Manikandan.S", desc: "Been working With GMS since Sep 2020, I have really seen the company grow. My career has skied with the growth of the company and I have had a chance to work with a very close team and founders. A conducive and employee-friendly work environment has helped me grow and develop my skills while making sure I deliver quality work to my clients as well. It has a good work-life balance too. I am glad that I made the decision to work here & I look forward to being a part of this organization for a long time to come." },
         { name: "Ashritha", desc: "I've worked closely with GMS for 2 years, and it's been an incredible journey. Their vast working experience truly sets them apart in their field. MAI brings knowledge, skills, and a deep understanding of the industry to every project they tackle. MAI consistently promotes an environment where teamwork, creativity, and innovation thrive. It's clear that they understand the importance of collaboration and recognise that the best results often come from a diverse and inclusive team. As a Team Lead for Digital Marketing and Content Writing, I am proud to be a part of this beautiful organisation with excellent colleagues. I wholeheartedly recommend MAI to anyone looking for great work experience and a perfect work environment." },
@@ -42,67 +15,38 @@ export default function Testimonials() {
         { name: "Pridheep", desc: "I've had the distinct pleasure of being part of the MAI family, and it has been a transformative experience in every sense. MAI isn't just a workplace; it's a community that embodies exceptional culture, leadership, and values. The culture at MAI is nothing short of remarkable. It's where innovation is nurtured, diversity is celebrated, and collaboration is second nature. It's heartening to be part of a company that doesn't just talk about social responsibility but actively participates in initiatives that give back and create lasting change. I'm not just proud to be part of MAI; I'm grateful to have found a home where excellence is not just encouraged but expected and where making a difference is not just a choice but a way of life. Working with someone who achieves professional excellence and elevates the entire work experience for those lucky enough to join their team is an honour" },
     ];
 
-    const settings = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 8000,
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 0,
-        cssEase: "linear",
-        pauseOnHover: true,
-        responsive: [
-            { breakpoint: 1024, settings: { slidesToShow: 2 } }, // Tablets
-            { breakpoint: 468, settings: { slidesToShow: 1 } },  // Mobile
-        ]
-    };
-
     return (
-        <div
-            style={{
-                backgroundImage: `url(${TestimonialBG.src})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-            }}
-            className="relative w-full h-screen font-urbanist"
-        >
-            <div className="bg-black/60 h-full flex flex-col justify-center items-center text-white px-10 py-10">
-                {/* Section Title */}
-                <h1 className="text-6xl text-center font-bold mb-10">Testimonials</h1>
+        <div style={{ backgroundImage: `url(${TestimonialBG.src})`, backgroundSize: "cover", backgroundPosition: "center", }} className="relative w-full min-h-screen font-urbanist">
+            <div className="bg-black/60 h-screen flex flex-col justify-center items-center text-[#D2BFA4] px-6 py-16">
+                <h1 className="font-nico-moji text-5xl md:text-6xl text-center font-bold mb-10 backdrop-blur-xs p-6 border border-[#D2BFA4] rounded-2xl shadow-2xl">
+                    Testimonials
+                </h1>
 
-                <div className="w-full flex flex-col lg:flex-row lg:items-center">
-                    {/* Left Section */}
-                    <div className="lg:w-1/2 relative">
-                        <Slider {...settings}>
-                            {data.map((testimonial, index) => (
-                                <motion.div
-                                    key={index}
-                                    className="px-4"
-                                    whileHover={{ scale: 1.05 }}
-                                >
-                                    <div className="max-w-md text-[#003F6B] bg-white p-6 m-4 rounded-lg shadow-lg space-y-5 relative">
-
-                                        <h2 className="text-2xl font-bold">❝{testimonial.name}❞</h2>
-                                        <p className="line-clamp-4 text-gray-700">{testimonial.desc}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </Slider>
-                        <div className="absolute top-0 right-0 bg-gradient-to-l from-red-700 via-gray-500 to-transparent"></div>
-
+                <div className="w-full h-full flex flex-col lg:flex-row lg:items-center justify-center gap-10">
+                    {/* Left Auto Carousel */}
+                    <div className="lg:w-1/2 rounded-2xl overflow-hidden">
+                        <AutoCarousel speed={30} items={data?.map((testimonial, index) => (
+                            <motion.div key={index} className="bg-[#D2BFA4] text-[#003F6B] p-6 rounded-lg shadow-lg h-full">
+                                <h2 className="text-xl font-bold mb-2">❝{testimonial?.name}❞</h2>
+                                <p className="text-gray-700 text-sm md:text-base line-clamp-4">
+                                    {testimonial?.desc}
+                                </p>
+                            </motion.div>
+                        ))}
+                        />
                     </div>
 
-                    {/* Right Section (Testimonials Slider) */}
-                    <div className="lg:w-1/2 lg:px-10 space-y-5 relative">
-                        <h2 className="text-4xl font-bold">
+                    {/* Right Section */}
+                    <div className="font-nico-moji lg:w-1/2 space-y-5 text-left backdrop-blur-xs p-12 rounded-2xl shadow-2xl border border-[#D2BFA4]">
+                        <h2 className="text-3xl md:text-4xl font-bold">
                             With You We Will Impact More - People Really Matter
                         </h2>
-                        <p className="text-lg">
-                            Entrepreneurs build families, families build communities, communities together call "Nation".
-                            My vision is to build a "Successful Nation" and I'm blessed to have wonderful family members
-                            who are helping me bring the One Man Vision to the Nation's vision.
+                        <p className="text-lg leading-relaxed">
+                            Entrepreneurs build families, families build communities,
+                            communities together call "Nation". My vision is to build a
+                            "Successful Nation" and I'm blessed to have wonderful family
+                            members who are helping me bring the One Man Vision to the
+                            Nation's vision.
                         </p>
                     </div>
                 </div>

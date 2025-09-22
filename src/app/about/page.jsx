@@ -1,137 +1,13 @@
 "use client";
-// import { Canvas, useFrame } from "@react-three/fiber";
-// import { Sphere, Torus, Box, Stars } from "@react-three/drei";
-// import * as THREE from "three";
 import { useRef } from "react";
 import Founder from "@/app/assets/landing/GMSFounder.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// ThreeBackground Component
-function FloatingElements() {
-    const elements = [
-        { ref: useRef(), type: 'sphere', size: [1, 32, 32], pos: new THREE.Vector3(-3, 0, -5), vel: new THREE.Vector3(0.01, 0.02, 0.015), color: "#00a8ff" },
-        { ref: useRef(), type: 'torus', size: [1, 0.4, 16, 32], pos: new THREE.Vector3(3, 0, -5), vel: new THREE.Vector3(-0.015, 0.01, 0.02), color: "#ff6b6b" },
-        { ref: useRef(), type: 'box', size: [1.5, 1.5, 1.5], pos: new THREE.Vector3(0, 0, -7), vel: new THREE.Vector3(0.02, -0.015, 0.01), color: "#4cd137" }
-    ];
-
-    const boundary = 5; // Movement boundary
-    const bounceFactor = 0.8; // Bounce intensity
-
-    useFrame(() => {
-        elements.forEach(element => {
-            // Update position
-            element.pos.add(element.vel);
-
-            // Boundary checks with bounce
-            if (element.pos.x > boundary || element.pos.x < -boundary) {
-                element.vel.x *= -bounceFactor;
-                element.pos.x = THREE.MathUtils.clamp(element.pos.x, -boundary, boundary);
-            }
-            if (element.pos.y > boundary || element.pos.y < -boundary) {
-                element.vel.y *= -bounceFactor;
-                element.pos.y = THREE.MathUtils.clamp(element.pos.y, -boundary, boundary);
-            }
-            if (element.pos.z > -3 || element.pos.z < -10) {
-                element.vel.z *= -bounceFactor;
-                element.pos.z = THREE.MathUtils.clamp(element.pos.z, -10, -3);
-            }
-
-            // Apply position to object
-            element.ref.current.position.copy(element.pos);
-
-            // Gentle rotation
-            element.ref.current.rotation.x += element.vel.y * 0.1;
-            element.ref.current.rotation.y += element.vel.x * 0.1;
-        });
-
-        // Simple collision avoidance
-        for (let i = 0; i < elements.length; i++) {
-            for (let j = i + 1; j < elements.length; j++) {
-                const distance = elements[i].pos.distanceTo(elements[j].pos);
-                const minDistance = 2.5; // Minimum distance between objects
-
-                if (distance < minDistance) {
-                    const direction = new THREE.Vector3()
-                        .subVectors(elements[i].pos, elements[j].pos)
-                        .normalize()
-                        .multiplyScalar(0.02);
-
-                    elements[i].vel.add(direction);
-                    elements[j].vel.sub(direction);
-                }
-            }
-        }
-    });
-
-    return (
-        <>
-            {elements.map((element, idx) => (
-                element.type === 'sphere' ? (
-                    <Sphere key={idx} ref={element.ref} args={element.size}>
-                        <meshStandardMaterial
-                            color={element.color}
-                            emissive={element.color}
-                            emissiveIntensity={0.5}
-                            metalness={0.8}
-                            roughness={0.2}
-                        />
-                    </Sphere>
-                ) : element.type === 'torus' ? (
-                    <Torus key={idx} ref={element.ref} args={element.size}>
-                        <meshStandardMaterial
-                            color={element.color}
-                            emissive={element.color}
-                            emissiveIntensity={0.3}
-                            metalness={0.7}
-                            roughness={0.3}
-                        />
-                    </Torus>
-                ) : (
-                    <Box key={idx} ref={element.ref} args={element.size}>
-                        <meshStandardMaterial
-                            color={element.color}
-                            emissive={element.color}
-                            emissiveIntensity={0.4}
-                            metalness={0.6}
-                            roughness={0.4}
-                        />
-                    </Box>
-                )
-            ))}
-        </>
-    );
-}
-
-// export function ThreeBackground() {
-//     return (
-//         <Canvas
-//             style={{
-//                 position: "fixed",
-//                 top: 0,
-//                 left: 0,
-//                 zIndex: -1,
-//                 width: "100vw",
-//                 height: "100vh",
-//             }}
-//             camera={{ position: [0, 0, 10], fov: 50 }}
-//         >
-//             <ambientLight intensity={0.3} />
-//             <pointLight position={[10, 10, 10]} intensity={1} />
-//             <directionalLight position={[0, 5, 5]} intensity={0.5} />
-
-//             <Stars radius={100} depth={50} count={5000} factor={4} fade speed={0.5} />
-//             {/* <FloatingElements /> */}
-//         </Canvas>
-//     );
-// }
-
 // Main Page Component
 export default function AboutPage() {
     return (
         <div className="relative min-h-screen overflow-hidden">
-            {/* 3D Background */}
-            {/* <ThreeBackground /> */}
 
             {/* Main Content */}
             <motion.div

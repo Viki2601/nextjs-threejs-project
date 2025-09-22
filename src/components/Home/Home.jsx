@@ -6,6 +6,7 @@ import FAQSection from './FAQSection'
 import Services from './Services'
 import SAB from './sab'
 import GrowTogether from './GrowTogether'
+import Testimonials from './testimonials'
 
 const Home = () => {
     return (
@@ -23,18 +24,18 @@ const Home = () => {
             <section className="w-full flex justify-center items-center min-h-screen ">
                 <GrowTogether />
             </section>
-            <section className="w-full flex justify-center items-center min-h-screen ">
+            {/* <section className="w-full flex justify-center items-center min-h-screen ">
                 <FAQSection />
             </section>
             <section className="w-full flex justify-center items-center min-h-screen ">
                 <Services />
+            </section> */}
+            <section className="w-full flex justify-center items-center min-h-screen ">
+                <Testimonials />
             </section>
             <section className="w-full flex justify-center items-center min-h-screen ">
                 <SAB />
             </section>
-            {/* <section className="w-full flex justify-center items-center min-h-screen ">
-        <Testimonials />
-      </section> */}
         </main>
     )
 }

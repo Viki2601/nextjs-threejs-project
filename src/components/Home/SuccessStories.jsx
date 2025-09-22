@@ -1,5 +1,4 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Banner from "@/app/assets/landing/Banner.avif";
