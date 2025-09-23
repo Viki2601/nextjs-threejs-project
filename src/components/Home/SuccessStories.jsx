@@ -11,16 +11,21 @@ const SuccessStories = () => {
       <div className="w-full grid md:grid-cols-2 gap-10 items-center">
         {/* Text Content */}
         <div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-black tracking-tighter">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-[#003F6B] tracking-tighter">
             Success stories
           </h1>
-          <button className="mt-6 bg-[#E7DCC9] text-black py-3 px-6 rounded-full text-base sm:text-lg font-medium">
+          <p className="text-lg md:text-2xl max-w-xl leading-relaxed">
+            At MAI, we believe in the power of collaboration and
+            continuous growth. Join us to be part of a team that
+            values innovation, learning, and mutual success.
+          </p>
+          <button className="mt-6 text-[#003F6B] border border-[#D2BFA4] py-3 px-6 rounded-full text-base sm:text-lg font-bold">
             See our work
           </button>
         </div>
 
         {/* Image Cards */}
-        <motion.div 
+        <motion.div
           className="relative flex flex-col md:gap-4 gap-6 md:h-[500px]"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -28,21 +33,21 @@ const SuccessStories = () => {
         >
           {/* Mobile Stack */}
           <div className="flex flex-col gap-6 md:hidden">
-            <motion.div 
+            <motion.div
               whileHover={{ y: -10 }}
               className="bg-[#035140] p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5"
             >
               <Image src={Worktops} alt="Mr Marvis" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-2xl sm:text-3xl font-bold text-[#13293D] mt-2">Work-Tops.com</h3>
             </motion.div>
-            <motion.div 
+            <motion.div
               whileHover={{ y: -10 }}
               className="bg-[#003F6B] p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5"
             >
               <Image src={Myproject} alt="Patta" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2">Myproject.ai</h3>
             </motion.div>
-            <motion.div 
+            <motion.div
               whileHover={{ y: -10 }}
               className="bg-white p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5"
             >
@@ -53,21 +58,21 @@ const SuccessStories = () => {
 
           {/* Desktop Absolute Stack */}
           <div className="hidden md:block relative h-full">
-            <motion.div 
+            <motion.div
               whileHover={{ y: -30 }}
               className="bg-[#035140] p-4 rounded-2xl shadow-xl absolute top-0 w-full flex space-x-5"
             >
               <Image src={Banner} alt="Mr Marvis" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-3xl font-bold text-white mt-3">Work-Tops.com</h3>
             </motion.div>
-            <motion.div 
+            <motion.div
               whileHover={{ y: -30 }}
               className="bg-[#003F6B] p-4 rounded-2xl shadow-xl absolute top-44 w-full flex space-x-5"
             >
               <Image src={Banner} alt="Patta" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-3xl font-bold text-white mt-3">Myproject.ai</h3>
             </motion.div>
-            <motion.div 
+            <motion.div
               whileHover={{ y: -30 }}
               className="bg-white p-4 rounded-2xl shadow-xl absolute top-[22rem] w-full flex space-x-5"
             >

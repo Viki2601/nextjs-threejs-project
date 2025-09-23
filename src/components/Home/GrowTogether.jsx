@@ -19,7 +19,7 @@ export default function GrowTogether() {
     const buttonY = useTransform(scrollYProgress, [0.6, 0.8], [400, 0]);
 
     return (
-        <section ref={sectionRef} className="relative w-full min-h-[200vh] bg-[#F8F9FA]">
+        <section ref={sectionRef} className="relative w-full min-h-[200vh] bg-[#003F6B]">
             <div className="sticky top-0 flex items-center justify-center h-screen overflow-hidden">
                 <motion.div style={{ width: imgWidth, height: imgHeight }} className="relative flex-shrink-0 overflow-hidden rounded-4xl">
                     <Image src={CareerBG} alt="Grow Together Background" fill className="object-cover" />

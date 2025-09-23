@@ -22,19 +22,8 @@ export default function About() {
                 </div>
 
                 {/* Right Image or Card */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="rounded-3xl overflow-hidden shadow-xl h-fit"
-                >
-                    <Image
-                        src={Banner}
-                        alt={"Banner"}
-                        className="object-cover w-full h-fit"
-                        priority
-                    />
+                <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="rounded-3xl overflow-hidden shadow-xl h-fit">
+                    <Image src={Banner} alt={"Banner"} className="object-cover w-full h-fit" priority />
                 </motion.div>
             </div>
 
