@@ -12,7 +12,7 @@ export default function CareerDetails() {
     useEffect(() => {
         const fetchJob = async () => {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/api/${id}`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/${id}`);
                 const data = await response.json();
                 setJob(data);
             } catch (err) {
@@ -53,7 +53,7 @@ export default function CareerDetails() {
         data.append("resume", formData.resume);
 
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/api/apply`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/apply`, {
                 method: 'POST',
                 body: data,
             });

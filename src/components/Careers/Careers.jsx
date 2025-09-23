@@ -11,7 +11,7 @@ export default function Careers() {
     // Fetching Jobs
     const fetchJobs = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}api/jobs`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/jobs`);
             if (!response.ok) throw new Error("Failed to fetch jobs");
             const jobs = await response.json();
             console.log("Fetched jobs:", jobs);
