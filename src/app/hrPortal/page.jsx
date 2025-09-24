@@ -83,32 +83,22 @@ export default function Page() {
 
   // HandleSubmit for Posting a New Jb Details 
   const handleSubmit = async (values) => {
-    setLoading(true);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/jobs`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...values
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
       });
 
       if (response.ok) {
-        const data = await response.json();
         toast.success('Job posted successfully!');
         form.resetFields();
         closePopup();
       } else {
-        console.error('Failed to post job');
         toast.error('❌ Failed to post job!');
       }
     } catch (error) {
-      console.error('Error:', error);
       toast.error(`⚠️ Error: ${error.message}`);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -117,14 +107,13 @@ export default function Page() {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/getJobs`);
       if (!response.ok) throw new Error("Failed to fetch jobs");
-      const jobs = await response.json();
-      console.log("Fetched jobs:", jobs);
-      return jobs;
+      return await response.json();
     } catch (error) {
-      console.error("Error fetching jobs:", error);
+      console.error(error);
       return [];
     }
   };
+
 
   useEffect(() => {
     const loadJobs = async () => {
@@ -137,50 +126,46 @@ export default function Page() {
 
   // Deleting Jobs
   const handleDelete = async (id) => {
-    const updatedJobs = jobs.filter((job) => job._id !== id);
-    setJobs(updatedJobs)
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/delete/${id}`, {
         method: 'DELETE',
       });
+
       if (!response.ok) throw new Error('Failed to delete');
-      // Remove deleted job from state
-      setJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));
+
+      setJobs((prev) => prev.filter((job) => job._id !== id));
       toast.success('Job Post Deleted!');
     } catch (error) {
-      console.error('Error deleting job:', error);
+      console.error(error);
       toast.error('Failed to Delete job!');
     }
   };
+
 
 
   const handleUpdate = async (values) => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/update/${editingJob._id}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
 
       if (!response.ok) throw new Error('Failed to update job');
 
+      const updatedJob = await response.json();
+      setJobs((prev) =>
+        prev.map((job) => (job._id === updatedJob._id ? updatedJob : job))
+      );
+
       toast.success('✅ Job updated successfully!');
       setEditModalOpen(false);
-
-      // Update local state
-      const updatedJob = await response.json();
-      setJobs((prevJobs) =>
-        prevJobs.map((job) =>
-          job._id === updatedJob._id ? updatedJob : job
-        )
-      );
     } catch (error) {
       console.error(error);
       toast.error('❌ Failed to update job');
     }
   };
+
 
 
 
@@ -324,7 +309,7 @@ export default function Page() {
                 <p><strong>Deadline:</strong> {new Date(job.deadline).toLocaleDateString()}</p>
                 <p className="mt-2 text-sm text-gray-700 line-clamp-3">{job.jobDescription}</p>
                 <div className="absolute top-5 right-5 space-y-3">
-                  <AiOutlineEdit className="text-xl font-bold text-[#003F6B] rounded-md hover:text-blue-600"/>
+                  <AiOutlineEdit className="text-xl font-bold text-[#003F6B] rounded-md hover:text-blue-600" />
                   <PiTrashSimpleLight className="text-xl font-bold text-[#003F6B] rounded-md hover:text-red-600" onClick={() => handleDelete(job._id)} />
                 </div>
               </div>

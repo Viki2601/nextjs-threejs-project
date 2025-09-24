@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
@@ -19,7 +18,6 @@ export default function CareerDetails() {
                 console.error("Error loading job:", err);
             }
         };
-
         if (id) fetchJob();
     }, [id]);
 
@@ -43,7 +41,6 @@ export default function CareerDetails() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const data = new FormData();
         data.append("jobId", id);
         data.append("name", formData.name);
@@ -60,25 +57,16 @@ export default function CareerDetails() {
 
             if (res.ok) {
                 toast.success("Application submitted successfully!");
-                // ✅ Clear the form
-                setFormData({
-                    name: '',
-                    email: '',
-                    phone: '',
-                    message: '',
-                    resume: null,
-                });
-                const fileInput = document.getElementById("resumeInput");
-                if (fileInput) fileInput.value = '';
-
+                setFormData({ name: '', email: '', phone: '', message: '', resume: null });
+                document.getElementById("resumeInput").value = '';
             } else {
-                toast.info("Failed to submit application.");
+                toast.error("Failed to submit application.");
             }
         } catch (error) {
-            console.error("Error submitting form:", error);
             toast.error("An error occurred.");
         }
     };
+
 
 
     if (!job) return <div className="text-center text-white p-5">Loading...</div>;

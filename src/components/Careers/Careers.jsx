@@ -1,35 +1,19 @@
 'use client';
+import { fetchJobs } from '@/store/jobSlice';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const categories = ['Development', 'Design', 'Marketing', 'Customer Service', 'Operations', 'Finance', 'Management'];
 
 export default function Careers() {
-    const [jobs, setJobs] = useState([]);
-
-    // Fetching Jobs
-    const fetchJobs = async () => {
-        try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/getJobs`);
-            if (!response.ok) throw new Error("Failed to fetch jobs");
-            const jobs = await response.json();
-            console.log("Fetched jobs:", jobs);
-            return jobs;
-        } catch (error) {
-            console.error("Error fetching jobs:", error);
-            return [];
-        }
-    };
+    const dispatch = useDispatch();
+    const { jobs, loading, error } = useSelector((state) => state.jobs);
 
     useEffect(() => {
-        const loadJobs = async () => {
-            const data = await fetchJobs();
-            setJobs(data);
-        };
-
-        loadJobs();
-    }, []);
+        dispatch(fetchJobs());
+    }, [dispatch]);
 
     return (
         <div className='flex flex-col items-center w-full min-h-screen px-4 py-10 bg-black/20 overflow-hidden'>
