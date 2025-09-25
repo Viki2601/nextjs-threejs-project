@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_API_URL_PROD;
 
 // ✅ Async Thunks
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
