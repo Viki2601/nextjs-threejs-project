@@ -1,26 +1,17 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { toast, ToastContainer } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchJobById } from '@/store/jobSlice';
 
-export default function CareerDetails() {
-    const { id } = useParams();
-    const [job, setJob] = useState(null);
+export default function CareerDetails({ slug }) {
+    const dispatch = useDispatch();
+    const { currentJob, loading } = useSelector((state) => state.jobs);
 
     useEffect(() => {
-        const fetchJob = async () => {
-            try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/${id}`);
-                const data = await response.json();
-                setJob(data);
-            } catch (err) {
-                console.error("Error loading job:", err);
-            }
-        };
-        if (id) fetchJob();
-    }, [id]);
-
+        dispatch(fetchJobById(slug));
+    }, [dispatch, slug]);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -42,7 +33,7 @@ export default function CareerDetails() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData();
-        data.append("jobId", id);
+        data.append("jobId", currentJob?._id);
         data.append("name", formData.name);
         data.append("email", formData.email);
         data.append("phone", formData.phone);
@@ -69,31 +60,31 @@ export default function CareerDetails() {
 
 
 
-    if (!job) return <div className="text-center text-white p-5">Loading...</div>;
+    if (loading) return <div className="text-center text-white p-5">Loading...</div>;
 
     return (
         <div className="text-white w-full min-h-screen flex flex-col lg:flex-row justify-center items-center gap-10 px-10 py-5 font-urbanist">
             {/* Left Side: Job Info */}
             <div className='max-w-2xl space-y-6 w-full'>
-                <h1 className="text-4xl font-bold">{job.jobTitle}</h1>
+                <h1 className="text-4xl font-bold">{currentJob?.jobTitle}</h1>
                 <motion.p initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.5 }}>
                     Location : Onsite - Pattaravakkam, Chennai.
                 </motion.p>
                 <ul className="space-y-1">
-                    {job.jobDescription}
+                    {currentJob?.jobDescription}
                 </ul>
                 <div className="text-sm bg-white text-black px-4 py-1 rounded-full w-fit capitalize">
-                    {job.jobType}
+                    {currentJob?.jobType}
                 </div>
                 <div>
                     <h2 className='text-xl font-bold'>Qualifications and Skills:</h2>
                     <ul className="list-disc pl-5 space-y-1">
-                        {job.qualifications.split('.').map((point, index) => (
+                        {currentJob?.qualifications.split('.').map((point, index) => (
                             point.trim() && <li key={index}>{point.trim()}</li>
                         ))}
                     </ul>
                 </div>
-                <p><strong>Deadline:</strong> {new Date(job.deadline).toLocaleDateString()}</p>
+                <p><strong>Deadline:</strong> {new Date(currentJob?.deadline).toLocaleDateString()}</p>
             </div>
 
             {/* Right Side: Application Form */}

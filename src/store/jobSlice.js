@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-const API_URL = process.env.NEXT_PUBLIC_API_URL_PROD;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // ✅ Async Thunks
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
@@ -9,15 +9,15 @@ export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
     return data.jobs;
 });
 
-export const fetchJobById = createAsyncThunk("jobs/fetchJobById", async (id) => {
-    const res = await fetch(`${API_URL}/${id}`);
+export const fetchJobById = createAsyncThunk("jobs/fetchJobById", async (slug) => {
+    const res = await fetch(`${API_URL}/jobs/slug/${slug}`);
     if (!res.ok) throw new Error("Failed to fetch job");
     const data = await res.json();
     return data.job;
 });
 
 export const createJob = createAsyncThunk("jobs/createJob", async (jobData) => {
-    const res = await fetch(`${API_URL}/jobs`, {
+    const res = await fetch(`${API_URL}/createJob`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(jobData),
@@ -38,12 +38,12 @@ export const updateJob = createAsyncThunk("jobs/updateJob", async ({ id, jobData
     return data.updatedJob;
 });
 
-export const deleteJob = createAsyncThunk("jobs/deleteJob", async (id) => {
-    const res = await fetch(`${API_URL}/delete/${id}`, {
+export const deleteJob = createAsyncThunk("jobs/deleteJob", async (slug) => {
+    const res = await fetch(`${API_URL}/deleteJobs/${slug}`, {
         method: "DELETE",
     });
     if (!res.ok) throw new Error("Failed to delete job");
-    return id;
+    return slug;
 });
 
 // ✅ Slice
@@ -88,7 +88,7 @@ const jobsSlice = createSlice({
 
             // Delete
             .addCase(deleteJob.fulfilled, (state, action) => {
-                state.jobs = state.jobs.filter((job) => job._id !== action.payload);
+                state.jobs = state.jobs.filter(job => job.slug !== action.payload);
             });
     },
 });

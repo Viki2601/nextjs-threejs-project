@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Form, Input, Button, Select, DatePicker, Radio, Modal } from 'antd';
 import dayjs from 'dayjs';
+import { useDispatch, useSelector } from "react-redux";
+import { createJob, deleteJob, fetchJobs } from "@/store/jobSlice";
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -19,9 +21,11 @@ export default function Page() {
   const [editingJob, setEditingJob] = useState(null);
   const [form] = Form.useForm();
   const [editForm] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-  const [jobs, setJobs] = useState([]);
-
+  const dispatch = useDispatch();
+  const { jobs, loading, error } = useSelector((state) => state.jobs);
+  useEffect(() => {
+    dispatch(fetchJobs());
+  }, [dispatch]);
 
   // Sample real-time data for charts
   const [applicationData, setApplicationData] = useState([
@@ -79,17 +83,10 @@ export default function Page() {
     return () => clearInterval(interval);
   }, []);
 
-
-
   // HandleSubmit for Posting a New Jb Details 
   const handleSubmit = async (values) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/jobs`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      });
-
+      const response = await dispatch(createJob(values));
       if (response.ok) {
         toast.success('Job posted successfully!');
         form.resetFields();
@@ -102,39 +99,13 @@ export default function Page() {
     }
   };
 
-  // Fetching Jobs
-  const fetchJobs = async () => {
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/getJobs`);
-      if (!response.ok) throw new Error("Failed to fetch jobs");
-      return await response.json();
-    } catch (error) {
-      console.error(error);
-      return [];
-    }
-  };
-
-
-  useEffect(() => {
-    const loadJobs = async () => {
-      const data = await fetchJobs();
-      setJobs(data);
-    };
-
-    loadJobs();
-  }, []);
-
   // Deleting Jobs
-  const handleDelete = async (id) => {
+  const handleDelete = async (slug) => {
+    console.log(slug)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL_PROD}/delete/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) throw new Error('Failed to delete');
-
-      setJobs((prev) => prev.filter((job) => job._id !== id));
+      dispatch(deleteJob(slug));
       toast.success('Job Post Deleted!');
+      dispatch(fetchJobs());
     } catch (error) {
       console.error(error);
       toast.error('Failed to Delete job!');
@@ -301,8 +272,8 @@ export default function Page() {
           <h3 className="text-2xl font-bold mb-4">Manage Existing Postings</h3>
           <p className="mb-4">Efficiently manage all your current job postings in one place.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-            {jobs.map((job) => (
-              <div key={job._id} className="bg-white relative shadow-md p-4 rounded-xl capitalize">
+            {jobs?.map((job, index) => (
+              <div key={index} className="bg-white relative shadow-md p-4 rounded-xl capitalize">
                 <h2 className="text-xl font-semibold">{job.jobTitle}</h2>
                 <p className="text-gray-600 mb-2">{job.department}</p>
                 <p><strong>Type:</strong> {job.jobType}</p>
@@ -310,7 +281,7 @@ export default function Page() {
                 <p className="mt-2 text-sm text-gray-700 line-clamp-3">{job.jobDescription}</p>
                 <div className="absolute top-5 right-5 space-y-3">
                   <AiOutlineEdit className="text-xl font-bold text-[#003F6B] rounded-md hover:text-blue-600" />
-                  <PiTrashSimpleLight className="text-xl font-bold text-[#003F6B] rounded-md hover:text-red-600" onClick={() => handleDelete(job._id)} />
+                  <PiTrashSimpleLight className="text-xl font-bold text-[#003F6B] rounded-md hover:text-red-600" onClick={() => handleDelete(job?.slug)} />
                 </div>
               </div>
             ))}

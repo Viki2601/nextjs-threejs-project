@@ -25,32 +25,18 @@ const SuccessStories = () => {
         </div>
 
         {/* Image Cards */}
-        <motion.div
-          className="relative flex flex-col md:gap-4 gap-6 md:h-[500px]"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <motion.div className="relative flex flex-col md:gap-4 gap-6 md:h-[500px]" initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           {/* Mobile Stack */}
           <div className="flex flex-col gap-6 md:hidden">
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="bg-[#035140] p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5"
-            >
+            <motion.div whileHover={{ y: -10 }} className="bg-[#035140] p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
               <Image src={Worktops} alt="Mr Marvis" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-2xl sm:text-3xl font-bold text-[#13293D] mt-2">Work-Tops.com</h3>
             </motion.div>
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="bg-[#003F6B] p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5"
-            >
+            <motion.div whileHover={{ y: -10 }} className="bg-[#003F6B] p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
               <Image src={Myproject} alt="Patta" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-2xl sm:text-3xl font-bold text-white mt-2">Myproject.ai</h3>
             </motion.div>
-            <motion.div
-              whileHover={{ y: -10 }}
-              className="bg-white p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5"
-            >
+            <motion.div whileHover={{ y: -10 }} className="bg-white p-4 rounded-2xl shadow-xl flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-5">
               <Image src={Banner} alt="Tony's Chocolonely" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-2xl sm:text-3xl font-bold text-[#0056D2] mt-2">Dragon Customer</h3>
             </motion.div>
@@ -58,24 +44,15 @@ const SuccessStories = () => {
 
           {/* Desktop Absolute Stack */}
           <div className="hidden md:block relative h-full">
-            <motion.div
-              whileHover={{ y: -30 }}
-              className="bg-[#035140] p-4 rounded-2xl shadow-xl absolute top-0 w-full flex space-x-5"
-            >
+            <motion.div whileHover={{ y: -30 }} className="bg-[#035140] p-4 rounded-2xl shadow-xl absolute top-0 w-full flex space-x-5">
               <Image src={Banner} alt="Mr Marvis" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-3xl font-bold text-white mt-3">Work-Tops.com</h3>
             </motion.div>
-            <motion.div
-              whileHover={{ y: -30 }}
-              className="bg-[#003F6B] p-4 rounded-2xl shadow-xl absolute top-44 w-full flex space-x-5"
-            >
+            <motion.div whileHover={{ y: -30 }} className="bg-[#003F6B] p-4 rounded-2xl shadow-xl absolute top-44 w-full flex space-x-5"    >
               <Image src={Banner} alt="Patta" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-3xl font-bold text-white mt-3">Myproject.ai</h3>
             </motion.div>
-            <motion.div
-              whileHover={{ y: -30 }}
-              className="bg-white p-4 rounded-2xl shadow-xl absolute top-[22rem] w-full flex space-x-5"
-            >
+            <motion.div whileHover={{ y: -30 }} className="bg-white p-4 rounded-2xl shadow-xl absolute top-[22rem] w-full flex space-x-5">
               <Image src={Banner} alt="Tony's Chocolonely" width={300} height={200} className="rounded-xl object-cover" />
               <h3 className="text-3xl font-bold text-[#0056D2] mt-3">Dragon Customer</h3>
             </motion.div>

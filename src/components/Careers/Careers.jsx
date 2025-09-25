@@ -35,16 +35,15 @@ export default function Careers() {
 
             {/* Job Listings */}
             <div className='w-full grid md:grid-cols-2 lg:grid-cols-3 mt-10 gap-6 px-6 font-urbanist z-20'>
-                {jobs.map((job, index) => (
+                {jobs?.map((job, index) => (
                     <motion.div key={index} className='flex flex-col space-y-5 md:space-y-0 md:items-center md:justify-between p-6 bg-white rounded-lg shadow-md overflow-hidden' initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 0.6, delay: index * 0.4 }} whileHover={{ scale: 1.02 }}>
                         <div>
-                            <motion.h2 initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 1, delay: index * 0.3 }} className='text-xl font-semibold capitalize'>{job.jobTitle}</motion.h2>
-                            <motion.p initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 1, delay: index * 0.5 }} className='text-gray-600 line-clamp-3'>{job.jobDescription}</motion.p>
+                            <motion.h2 initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 1, delay: index * 0.3 }} className='text-xl font-semibold capitalize'>{job?.jobTitle}</motion.h2>
+                            <motion.p initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 1, delay: index * 0.5 }} className='text-gray-600 line-clamp-3'>{job?.jobDescription}</motion.p>
                             <div className='flex gap-2 mt-2'>
-                                <motion.span initial={{ opacity: 0, y: 100 }} animate={{ opacity: 100, y: 0 }} transition={{ duration: 1, delay: 0.2 }} className='px-3 py-1 text-xs font-medium outline out rounded-full capitalize'>{job.jobType}</motion.span>
+                                <motion.span initial={{ opacity: 0, y: 100 }} animate={{ opacity: 100, y: 0 }} transition={{ duration: 1, delay: 0.2 }} className='px-3 py-1 text-xs font-medium outline out rounded-full capitalize'>{job?.jobType}</motion.span>
                             </div>
                         </div>
-                        {/* <Link href='/apply' className='text-xl text-[#003F6B] hover:underline'>Apply</Link> */}
                         <motion.div className='relative inline-block overflow-hidden'>
                             <motion.div
                                 className='absolute inset-0 rounded-full bg-[#003F6B] opacity-0'
@@ -60,7 +59,7 @@ export default function Careers() {
                                 className='relative z-10 px-6 border-2 w-fit border-[#003F6B] rounded-md text-xl text-[#003F6B] hover:text-white transition-all duration-500'
                                 whileHover={{ backgroundColor: '#003F6B' }}
                             >
-                                <Link href={`/careers/${job._id}`}>Apply</Link>
+                                <Link href={`/careers/${job?.slug}`}>Apply</Link>
                             </motion.div>
                         </motion.div>
                     </motion.div>
