@@ -53,3 +53,16 @@ body {
 .font-rock-salt {
   font-family: 'Rock Salt', cursive;
 }
+
+/* For Chrome, Safari, Edge */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+  /* hides scrollbar */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+}

@@ -87,13 +87,9 @@ export default function Page() {
   const handleSubmit = async (values) => {
     try {
       const response = await dispatch(createJob(values));
-      if (response.ok) {
-        toast.success('Job posted successfully!');
-        form.resetFields();
-        closePopup();
-      } else {
-        toast.error('❌ Failed to post job!');
-      }
+      toast.success('Job posted successfully!');
+      form.resetFields();
+      closePopup();
     } catch (error) {
       toast.error(`⚠️ Error: ${error.message}`);
     }
