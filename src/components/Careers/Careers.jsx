@@ -2,14 +2,13 @@
 import { fetchJobs } from '@/store/jobSlice';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 const categories = ['Development', 'Design', 'Marketing', 'Customer Service', 'Operations', 'Finance', 'Management'];
 
 export default function Careers() {
     const dispatch = useDispatch();
-    const { jobs, loading, error } = useSelector((state) => state.jobs);
+    const { jobs, loading } = useSelector((state) => state.jobs);
 
     useEffect(() => {
         dispatch(fetchJobs());

@@ -129,7 +129,7 @@ export default function ApplicationForm({ handleChange, handleSubmit, formData, 
                 type="file"
                 id="resumeInput"
                 accept=".pdf,.doc,.docx"
-                className="cursor-pointer w-full px-4 py-2 shadow border border-gray-100 focus:outline-none focus:border-[#003F6B] rounded-xl bg-gray-100 col-span-2"
+                className="cursor-pointer *w-full px-4 py-2 shadow border border-gray-100 focus:outline-none focus:border-[#003F6B] rounded-xl bg-gray-100 col-span-2"
                 onChange={(e) => setFormData({ ...formData, resume: e.target.files[0] })}
                 required
             />

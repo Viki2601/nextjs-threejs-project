@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-const API_URL = process.env.NEXT_PUBLIC_API_URL_PROD;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // ✅ Async Thunks
 export const fetchJobs = createAsyncThunk("jobs/fetchJobs", async () => {
@@ -27,8 +27,8 @@ export const createJob = createAsyncThunk("jobs/createJob", async (jobData) => {
     return data.job;
 });
 
-export const updateJob = createAsyncThunk("jobs/updateJob", async ({ id, jobData }) => {
-    const res = await fetch(`${API_URL}/update/${id}`, {
+export const updateJob = createAsyncThunk("jobs/updateJob", async ({ slug, jobData }) => {
+    const res = await fetch(`${API_URL}/updateJob/${slug}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(jobData),
@@ -37,6 +37,7 @@ export const updateJob = createAsyncThunk("jobs/updateJob", async ({ id, jobData
     const data = await res.json();
     return data.updatedJob;
 });
+
 
 export const deleteJob = createAsyncThunk("jobs/deleteJob", async (slug) => {
     const res = await fetch(`${API_URL}/deleteJobs/${slug}`, {

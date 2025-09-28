@@ -1,9 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+    const pathname = usePathname();
+
     return (
-        <div className="bg-white overflow-hidden font-urbanist">
+        <div className={`bg-white overflow-hidden font-urbanist ${pathname === "/hrPortal" ? "hidden" : "block"} `} >
             {/* Footer Content */}
             <div className="px-4 md:px-10 py-5 flex flex-col md:flex-row md:space-x-5 space-y-5 md:space-y-0">
                 {/* Left Section: Informations and Social Links */}

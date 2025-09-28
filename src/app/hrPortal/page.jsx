@@ -11,6 +11,7 @@ import { Form, Input, Button, Select, DatePicker, Radio, Modal } from 'antd';
 import dayjs from 'dayjs';
 import { useDispatch, useSelector } from "react-redux";
 import { createJob, deleteJob, fetchJobs } from "@/store/jobSlice";
+import HRPanel from "@/components/HRPanel/HRPanel";
 const { TextArea } = Input;
 const { Option } = Select;
 
@@ -380,7 +381,8 @@ export default function Page() {
   ];
 
   return (
-    <section className="py-20 px-4 font-urbanist relative">
+    <section className="font-urbanist relative">
+      <HRPanel />
       {/* Popup Modal */}
       <Modal
         title={selectedStep?.title}

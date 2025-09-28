@@ -41,7 +41,6 @@ export default function CareerDetails({ slug }) {
         setFormData(prev => ({ ...prev, resume: e.target.files[0] }));
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = new FormData();

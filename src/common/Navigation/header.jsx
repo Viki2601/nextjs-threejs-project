@@ -5,11 +5,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { RiCloseLine, RiMenu3Line } from "react-icons/ri";
 import MAI from "@/app/assets/landing/MAI.png";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
+    const pathname = usePathname();
 
     const menuVariants = {
         hidden: { opacity: 0 },
@@ -26,7 +27,7 @@ export default function Header() {
     };
 
     return (
-        <div className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-8 bg-gradient-to-b from-[#003F6B]/90 via-[#003F6B]/50 to-transparent">
+        <div className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-8 bg-gradient-to-b from-[#003F6B]/90 via-[#003F6B]/50 to-transparent ${pathname === "/hrPortal" ? "hidden" : "fixed"}`}>
             {/* Logo */}
             <button onClick={() => router.push("/")} className="focus:outline-none cursor-pointer"> {/* ✅ Use button for navigation */}
                 <Image src={MAI} alt="MAI" height={1000} width={1000} className="w-24 object-fill" />
