@@ -4,7 +4,7 @@ import { FiChevronDown, FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import SelectInput from "./SelectInput";
 import useOutsideClick from "@/Hooks/useOutsideClick";
 
-export default function AdvancedDate({ label, name, value, onChange, showTime = false }) {
+export default function AdvancedDate({ label, name, value, onChange, showTime = false, size }) {
     const [open, setOpen] = useState(false);
     const [selectedDate, setSelectedDate] = useState(value ? new Date(value) : null);
     const [currentMonth, setCurrentMonth] = useState(selectedDate ? selectedDate.getMonth() : new Date().getMonth());
@@ -42,7 +42,7 @@ export default function AdvancedDate({ label, name, value, onChange, showTime = 
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     return (
-        <div ref={containerRef} className="w-xs relative font-urbanist">
+        <div ref={containerRef} className={`${size ? `w-${size}` : "w-xs"} relative font-urbanist`}>
             {label && <label className="block mb-2 text-gray-700 font-medium">{label}</label>}
             <div className={`flex items-center justify-between px-4 py-2 border rounded-xl shadow cursor-pointer ${open ? "border-[#003F6B]" : "border-gray-200"} bg-white hover:border-[#003F6B]`} onClick={() => setOpen(!open)}>
                 <span className={selectedDate ? "text-black" : "text-gray-400"}>

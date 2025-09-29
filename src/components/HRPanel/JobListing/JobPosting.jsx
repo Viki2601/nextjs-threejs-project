@@ -63,7 +63,7 @@ export default function JobPosting() {
             {/* Tabs */}
             <div className="flex space-x-8 border-b border-gray-300 relative">
                 {tabs?.map((tab) => (
-                    <button key={tab?.id} onClick={() => setActiveTab(tab?.id)} className={`pb-3 relative font-semibold text-lg transition-colors ${activeTab === tab?.id ? "text-[#003F6B]" : "text-gray-500"}`}>
+                    <button key={tab?.id} onClick={() => setActiveTab(tab?.id)} className={`cursor-pointer pb-3 relative font-semibold text-lg transition-colors ${activeTab === tab?.id ? "text-[#003F6B]" : "text-gray-500"}`}>
                         {tab?.label}
                         {activeTab === tab?.id && (
                             <motion.div layoutId="underline" className="absolute left-0 right-0 -bottom-[1px] h-[3px] bg-[#003F6B] rounded-full" />

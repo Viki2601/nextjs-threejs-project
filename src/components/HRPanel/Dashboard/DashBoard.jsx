@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Event from "./Event";
+import Analytics from "./Analytics";
 
 export default function DashBoard() {
     const [tasks, setTasks] = useState([
@@ -50,7 +51,7 @@ export default function DashBoard() {
     };
 
     return (
-        <main className="flex-1 p-6 overflow-y-auto hide-scrollbar">
+        <main className="h-[calc(100vh-10px)] flex-1 p-6 overflow-y-auto hide-scrollbar">
             <motion.h1 initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} className="text-4xl font-extrabold text-[#003F6B]" >
                 Welcome 👋
             </motion.h1>
@@ -61,16 +62,20 @@ export default function DashBoard() {
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {stats?.map((stat, i) => (
-                    <motion.div key={i} custom={i} initial="hidden" animate="visible" whileHover="hover" variants={cardVariants} className={`relative bg-gradient-to-br ${stat.color} text-white p-8 rounded-2xl shadow-lg overflow-hidden`}>
+                    <motion.div key={i} custom={i} initial="hidden" animate="visible" whileHover="hover" variants={cardVariants} className={`relative bg-gradient-to-br ${stat?.color} text-white p-4 rounded-2xl shadow-lg overflow-hidden`}>
                         <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-2xl" />
                         <div className="relative z-10">
-                            <h2 className="text-xl font-semibold">{stat.title}</h2>
-                            <p className="mt-4 text-5xl font-extrabold">{stat.value}</p>
+                            <h2 className="text-xl font-semibold">{stat?.title}</h2>
+                            <p className="mt-4 text-4xl font-extrabold">{stat?.value}</p>
                         </div>
                         <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 4 }} className="absolute -top-6 -right-6 w-24 h-24 bg-black/20 rounded-full blur-2xl" />
                         <motion.div animate={{ x: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 6 }} className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#003F6B]/10 rounded-full blur-3xl" />
                     </motion.div>
                 ))}
+            </div>
+            
+            <div className="my-10">
+                <Analytics />
             </div>
 
             <div className="flex gap-3">

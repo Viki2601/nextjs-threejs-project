@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 import DashBoard from "./Dashboard/DashBoard";
 import SideBar from "./SideBar";
