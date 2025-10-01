@@ -1,4 +1,5 @@
 "use client";
+import Input from "@/common/Input/Input";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FiMapPin, FiPhone, FiMail, FiHome, FiGlobe } from "react-icons/fi";
@@ -22,27 +23,25 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="min-h-screen font-urbanist">
-            <div className="container mx-auto px-8 py-5 grid md:grid-cols-2 gap-12">
-                <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="bg-white rounded-xl shadow-lg p-8 h-fit md:sticky md:top-24">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
+        <div className="min-h-screen font-urbanist mt-26">
+            <div className="container mx-auto px-8 py-5 grid lg:grid-cols-2 gap-12">
+                <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="bg-white rounded-xl shadow-lg p-4 md:p-8 h-fit lg:sticky lg:top-24">
+                    <h2 className="text-lg md:text-2xl font-bold text-gray-800 mb-6">Send us a message</h2>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
-                            <label htmlFor="name" className="block text-gray-700 mb-2">Name</label>
-                            <input type="text" id="name" name="name" value={formData?.name} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003F6B] focus:border-transparent" required />
+                            <Input label={"Full Name"} name="name" onChange={handleChange} value={formData?.name} required type="text" />
                         </div>
 
                         <div>
-                            <label htmlFor="email" className="block text-gray-700 mb-2">Email</label>
-                            <input type="email" id="email" name="email" value={formData?.email} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003F6B] focus:border-transparent" required />
+                            <Input label={"Email"} name="email" onChange={handleChange} value={formData?.email} required type="email" />
                         </div>
 
                         <div>
                             <label htmlFor="message" className="block text-gray-700 mb-2">Message</label>
-                            <textarea id="message" name="message" rows="5" value={formData?.message} onChange={handleChange} className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#003F6B] focus:border-transparent" required></textarea>
+                            <textarea id="message" name="message" rows="5" value={formData?.message} onChange={handleChange} className="w-full bg-white px-4 py-2 rounded-xl shadow-sm focus:outline-none" required></textarea>
                         </div>
 
-                        <button type="submit" disabled={isSubmitting} className={`w-full py-3 px-6 rounded-lg text-white font-medium ${isSubmitting ? 'bg-gray-600' : 'bg-[#003F6B]'} transition-colors`}>
+                        <button type="submit" disabled={isSubmitting} className={`w-full cursor-pointer py-3 px-6 rounded-xl text-white font-medium ${isSubmitting ? 'bg-gray-600' : 'bg-[#003F6B]'} transition-colors`}>
                             {isSubmitting ? 'Sending...' : 'Send Message'}
                         </button>
 
@@ -53,12 +52,12 @@ export default function ContactPage() {
                 {/* Contact Information */}
                 <div className="space-y-8 sticky top-52">
                     {/* India Office */}
-                    <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="bg-white rounded-xl shadow-lg p-8">
+                    <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="bg-white rounded-xl shadow-lg p-4 md:p-8">
                         <div className="flex items-center gap-4 mb-6">
                             <div className="bg-blue-100 p-3 rounded-full text-[#003F6B]">
-                                <FiHome className="text-2xl" />
+                                <FiHome className="text-lg md:text-2xl" />
                             </div>
-                            <h2 className="text-2xl font-bold text-gray-800">Technical Office (India)</h2>
+                            <h2 className="text-lg md:text-2xl font-bold text-gray-800">Technical Office (India)</h2>
                         </div>
                         <div className="space-y-4 text-gray-600">
                             <p className="flex items-start gap-3">
@@ -78,12 +77,12 @@ export default function ContactPage() {
                     </motion.div>
 
                     {/* UK Office */}
-                    <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="bg-white rounded-xl shadow-lg p-8">
+                    <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="bg-white rounded-xl shadow-lg p-4 md:p-8">
                         <div className="flex items-center gap-4 mb-6">
                             <div className="bg-blue-100 p-3 rounded-full text-[#003F6B]">
-                                <FiGlobe className="text-2xl" />
+                                <FiGlobe className="text-lg md:text-2xl" />
                             </div>
-                            <h2 className="text-2xl font-bold text-gray-800">Registered Office (UK)</h2>
+                            <h2 className="text-lg md:text-2xl font-bold text-gray-800">Registered Office (UK)</h2>
                         </div>
                         <div className="space-y-4 text-gray-600">
                             <p className="flex items-start gap-3">

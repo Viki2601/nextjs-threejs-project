@@ -28,17 +28,14 @@ export default function Header() {
 
     return (
         <div className={`fixed top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-8 bg-gradient-to-b from-[#003F6B]/90 via-[#003F6B]/50 to-transparent ${pathname === "/hrPortal" ? "hidden" : "fixed"}`}>
-            {/* Logo */}
-            <button onClick={() => router.push("/")} className="focus:outline-none cursor-pointer"> {/* ✅ Use button for navigation */}
+            <button onClick={() => router.push("/")} className="focus:outline-none cursor-pointer">
                 <Image src={MAI} alt="MAI" height={1000} width={1000} className="w-24 object-fill" />
             </button>
 
-            {/* Menu Button */}
-            <button onClick={() => setIsOpen(!isOpen)} className="text-white z-50">
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white z-50 cursor-pointer">
                 {isOpen ? <RiCloseLine size={32} /> : <RiMenu3Line size={32} />}
             </button>
 
-            {/* Fullscreen Overlay */}
             {isOpen && (
                 <motion.div initial="hidden" animate="visible" exit="hidden" variants={menuVariants} className="w-full fixed inset-0 bg-black/90 flex flex-col items-center justify-center space-y-8">
                     {["Home", "About", "Careers", "CSR", "Testimonials", "Contact"].map((item, index) => (
@@ -48,7 +45,6 @@ export default function Header() {
                             </Link>
                         </motion.div>
                     ))}
-
                 </motion.div>
             )}
         </div>

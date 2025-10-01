@@ -90,7 +90,7 @@ export default function CareerDetails({ slug }) {
     if (loading) return <div className="text-center text-white p-5">Loading...</div>;
 
     return (
-        <div className="mt-24 text-white w-full min-h-screen flex flex-col lg:flex-row justify-center items-center gap-10 px-10 py-5 font-urbanist">
+        <div className="mt-26 text-white w-full min-h-screen flex flex-col lg:flex-row justify-center items-center gap-10 px-10 py-5 font-urbanist">
             {/* Left Side: Job Info */}
             <div className='w-full flex justify-between items-start space-y-6'>
                 <div className='max-w-3xl space-y-6 w-full'>

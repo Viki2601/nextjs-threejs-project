@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import CareerBG from "@/app/assets/CareerBG.jpg";
+import Link from "next/link";
 
 export default function GrowTogether() {
     const sectionRef = useRef(null);
@@ -38,10 +39,10 @@ export default function GrowTogether() {
                         continuous growth. Join us to be part of a team that
                         values innovation, learning, and mutual success.
                     </p>
-                    <motion.div style={{ opacity: contentOpacity, y: buttonY }} className="absolute -bottom-20 flex justify-center items-center w-full">
-                        <button className="px-6 py-3 bg-[#D2BFA4] text-black font-semibold rounded-full hover:bg-[#bfa88f] transition">
+                    <motion.div style={{ opacity: contentOpacity, y: buttonY }} className="cursor-pointer absolute -bottom-20 flex justify-center items-center w-full">
+                        <Link href={"/careers"} className="px-6 py-3 bg-[#D2BFA4] text-black font-semibold rounded-full hover:bg-[#bfa88f] transition">
                             Explore Careers
-                        </button>
+                        </Link>
                     </motion.div>
                 </motion.div>
             </div>

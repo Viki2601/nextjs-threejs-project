@@ -2,6 +2,7 @@
 import Founder from "@/app/assets/landing/GMSFounder.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function AboutPage() {
     return (
@@ -30,9 +31,11 @@ export default function AboutPage() {
                         Our founder, G.M.S, stands out as the first generation to successfully establish a network with experts throughout the UK in this period of generational hierarchy. With his ground research in the field for more than a decade, he has endeavored persistently, overcoming tons of challenges to make this website a reality from concept. He visioned a dream that is alive today and helps millions fulfill theirs.
                     </p>
                     <p className="text-lg font-semibold">Check him out on LinkedIn</p>
-                    <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="px-8 py-1 bg-white text-md text-[#003F6B] rounded-lg">
-                        Connect
-                    </motion.button>
+                    <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} className="w-fit cursor-pointer px-8 py-1 bg-white text-md text-[#003F6B] rounded-lg">
+                        <Link href={"https://www.linkedin.com/in/gmskumar07/"} target="_blank" rel="noopener noreferrer" className="font-semibold">
+                            Connect
+                        </Link>
+                    </motion.div>
                 </div>
             </motion.div>
         </div>

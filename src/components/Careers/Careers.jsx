@@ -17,7 +17,7 @@ export default function Careers() {
     return (
         <div className='flex flex-col items-center w-full min-h-screen px-4 py-10 bg-black/20 overflow-hidden'>
             {/* Hero Section */}
-            <div className='w-full max-w-4xl text-center text-white font-urbanist mt-20'>
+            <div className='w-full max-w-4xl text-center text-white font-urbanist mt-26'>
                 <motion.p className='inline-block px-4 py-1 text-sm font-medium border rounded-full' whileInView={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: -100 }} transition={{ duration: 1 }} whileHover={{ scale: 1.1 }}>We're hiring!</motion.p>
                 <motion.h1 initial={{ opacity: 0, x: -100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 1, delay: 0.4 }} className='mt-4 text-4xl font-bold'>Become A Member Of Our Enthusiastic & Committed Team</motion.h1>
                 <motion.p initial={{ opacity: 0, x: 100 }} whileInView={{ opacity: 100, x: 0 }} transition={{ duration: 1, delay: 0.6 }} className='mt-2'>Experience a culture that values creativity, flexibility, and offers ample opportunities for career growth and personal development. With our people-centric, community-focused business model, we take pride in our high staff retention rate</motion.p>
