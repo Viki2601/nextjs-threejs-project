@@ -4,6 +4,7 @@ import DashBoard from "./Dashboard/DashBoard";
 import SideBar from "./SideBar";
 import JobPosting from "./JobListing/JobPosting";
 import Applications from "./Applications/Applications";
+import Testimonials from "./Testimonials/Testimonials";
 
 export default function HRPanel() {
     const [activePage, setActivePage] = useState("dashboard");
@@ -13,6 +14,7 @@ export default function HRPanel() {
             case "dashboard": return <DashBoard />;
             case "applications": return <Applications />;
             case "jobs": return <JobPosting />;
+            case "testimonials": return <Testimonials />;
             default: return <DashBoard />;
         }
     };

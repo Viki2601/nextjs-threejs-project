@@ -42,7 +42,7 @@ export default function Testimonials() {
 
     return (
         <div className="mt-26 py-16 font-urbanist">
-            <h2 className="text-center text-4xl font-bold text-white mb-10">
+            <h2 className="text-center text-4xl font-bold text-[#D2BFA4] mb-10">
                 Trusted By
             </h2>
             <div className="m-6 lg:m-10 overflow-hidden rounded-xl lg:rounded-4xl">

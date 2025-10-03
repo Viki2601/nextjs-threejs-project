@@ -8,8 +8,8 @@ export default function SideBar({ setActivePage }) {
                 <button onClick={() => setActivePage("dashboard")} className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Dashboard</button>
                 <button onClick={() => setActivePage("jobs")} className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Job Postings</button>
                 <button onClick={() => setActivePage("applications")} className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Applications</button>
-                {/* <button onClick={() => setActivePage("analytics")} className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Analytics</button>
-                <button onClick={() => setActivePage("settings")} className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Settings</button> */}
+                <button onClick={() => setActivePage("testimonials")} className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Testimonials</button>
+                {/* <button onClick={() => setActivePage("settings")} className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Settings</button> */}
             </nav>
             <div className="p-4 border-t border-white/20">
                 <button className="w-full text-left px-4 py-2 rounded-md hover:bg-[#002c4d] transition">Logout</button>

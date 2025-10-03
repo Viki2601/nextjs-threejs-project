@@ -6,6 +6,7 @@ import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
+import WriteAboutUs from "@/components/Home/WriteAboutUs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
             <SpeedInsights />
             <Header />
             <main className="flex-grow">{children}</main>
+            <WriteAboutUs />
             <Footer />
           </div>
         </Provider>
